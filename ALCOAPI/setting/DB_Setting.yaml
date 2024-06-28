@@ -1,0 +1,8 @@
+DB_Setting_1:
+  schema: "mysql"
+  user: "alco"
+  pass: "alco2024"
+  host: "localhost"
+  db: "alcodb"
+
+  
