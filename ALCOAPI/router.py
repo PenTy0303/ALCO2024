@@ -3,6 +3,9 @@ from flask import Flask
 
 # 自作モジュール（相対実行ファイルであるServerから見た相対インポートであることに注意）
 from ALCOAPI.Controller.v1_0_0.AuthUser import AuthUser
+import ALCOAPI.setLogger as setLogger
+
+
 router = Flask(__name__)
 router.config.from_object('ALCOAPI.config')
 
@@ -10,4 +13,11 @@ router.config.from_object('ALCOAPI.config')
 router.register_blueprint(AuthUser) # ver1のAPI群の追加
 
 # method
+
+# ログ取得のためのオブジェクト生成
+# 標準Handlerを全て無効化
+router.logger.handlers.clear()
+
+# setLogger実行
+setLogger.SetLogger()
 

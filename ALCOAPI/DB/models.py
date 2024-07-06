@@ -10,6 +10,7 @@ from sqlalchemy.types import Integer, String, BigInteger, DateTime
 
 Base = declarative_base()
 
+# USER テーブル作成
 class USER(Base):
     
     # metadata
@@ -26,6 +27,7 @@ class USER(Base):
     # CRUDMethods
 
 
+# USERDataテーブル作成
 class USERData(Base):
     
     # metadata
@@ -41,7 +43,8 @@ class USERData(Base):
     weekSteps = Column(String(255))
     
     # CURDMethods
-    
+
+# USERSessionテーブル作成
 class USERSession(Base):
     
     # metadata
@@ -54,7 +57,8 @@ class USERSession(Base):
     state = Column(String(255), nullable=False)
     
     # CRUDMethods
-    
+
+# CLIENTHistoryテーブル作成
 class CLIENTHistory(Base):
     
     # metadata
@@ -68,7 +72,7 @@ class CLIENTHistory(Base):
     payload = Column(String(1024), nullable=False)
     
     # CRUDMethods
-    
+
 
 
 if(__name__ == "__main__"):
