@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 # 自作モジュール
 from ALCOAPI.DB.CreateEngine import CreateEngine
+from logging import getLogger
 
 class MakeSession():
     
@@ -11,9 +12,21 @@ class MakeSession():
         
         # ベタ打ちにはしたくない
         CE = CreateEngine()
-        SessionClass = sessionmaker(CE.getEngine())
-        self._session = SessionClass()
+        self._SessionClass = sessionmaker(autocommig=False, autoflush=False, bind=CE.getEngine())
+        
+        # loggerの管理
+        self.logger = getLogger("MainLog").getChild("Session")
     
     # getter
     def getSession(self):
-        return self._session
+        session = self._SessionClass()
+        try:
+            yield session
+        except Exception as e:
+            self.logger.error("セッション関連でエラーが発生したのでロールバックして当該セッションをクローズします : {e}")
+            session.rollback()
+            raise
+        finally:
+            session.close()
+            
+        

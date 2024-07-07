@@ -67,7 +67,7 @@ class CLIENTHistory(Base):
     # columns
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     userID = Column(String(8), ForeignKey("USER.userID"), nullable=False)
-    datae = Column(DateTime, nullable=False)
+    date = Column(DateTime, nullable=False)
     type = Column(String(255), nullable=False)
     payload = Column(String(1024), nullable=False)
     

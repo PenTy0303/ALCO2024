@@ -68,9 +68,9 @@ def GetAuthUser():
     
     # JSONSCEMAにあったリクエストが送られてきたため，具体的な処理に移る
     
-    # データの取得
+    # データベースに接続
+    # MakeSession()ハンドリング
     
-    return "Hello"
     
     
         
