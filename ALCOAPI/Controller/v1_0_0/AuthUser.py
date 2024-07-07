@@ -5,8 +5,11 @@ from jsonschema import validate, ValidationError
 from logging import getLogger
 
 # 自作モジュール
+from ALCOAPI.DB.CreateEngine import CreateEngine
 from ALCOAPI.DB.makeSession import MakeSession
 from ALCOAPI.DB.models import USER, USERData, USERSession, CLIENTHistory
+
+from ALCOAPI.Controller.v1_0_0.CreateHistory import CreateHistory
 
 
 
@@ -16,6 +19,9 @@ AuthUser = Blueprint("AuthUser", __name__, url_prefix = "/ALCOAPI/v1.0.0/AuthUse
 
 # loggingに登録してあるALCOAPI用のハンドラを取得
 logger = getLogger("MainLog").getChild("AuthUser")
+
+# エンジンの作成
+CE = CreateEngine()
 
 # method
 
@@ -30,6 +36,8 @@ def _ReadJson(path):
 # router
 @AuthUser.route("", methods=['POST'])
 def GetAuthUser():
+    
+    # CreateHistory(request, "POST")
     
     response = {}
 
@@ -55,7 +63,7 @@ def GetAuthUser():
                 
                 return Response(response=json.dumps(''), status=401)
             
-            validate(request.get_json(), json_schema)
+            validate(request.json, json_schema)
         
         except ValidationError as e:
             logger.error(f"requestBodyの形式が一致しません : {e}")
@@ -70,6 +78,24 @@ def GetAuthUser():
     
     # データベースに接続
     # MakeSession()ハンドリング
+    
+    try:
+        session = MakeSession(CE)
+    except Exception as e:
+        logger.error("セッション作成エラーです")
+        
+        return Response(request=json.dumps(""), status=401)
+    
+    # データベースのモデルにアクセス
+    User = USER()
+    
+    # Requestデータのセット
+    contents = request.get_json()
+    userID = contents["userID"]
+    password = contents["pass"]
+    
+    # データベースのデータを確保
+    users = session.query(User).all()
     
     
     
