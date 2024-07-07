@@ -3,6 +3,8 @@ from flask import Blueprint, request, Response
 import json
 from jsonschema import validate, ValidationError
 from logging import getLogger
+import hashlib
+import os
 
 # 自作モジュール
 from ALCOAPI.DB.CreateEngine import CreateEngine
@@ -10,6 +12,7 @@ from ALCOAPI.DB.makeSession import MakeSession
 from ALCOAPI.DB.models import USER, USERData, USERSession, CLIENTHistory
 
 from ALCOAPI.Controller.v1_0_0.CreateHistory import CreateHistory
+from ALCOAPI.Controller.v1_0_0.tools import ReadJson, HashText, CreateUUID
 
 
 
@@ -26,12 +29,7 @@ CE = CreateEngine()
 # method
 
 PATH_JSONSCHEMA = "ALCOAPI/Controller/v1_0_0/schema/AuthUser.json"
-
-def _ReadJson(path):
-    with open(path, mode = "r") as f:
-        response = json.load(f)
-        
-    return response
+PAPPER = os.environ["PAPPER"]
 
 # router
 @AuthUser.route("", methods=['POST'])
@@ -57,7 +55,7 @@ def GetAuthUser():
         try:
             # そもそもJSONSCHEMAは存在するか
             try:
-                json_schema = _ReadJson(PATH_JSONSCHEMA)
+                json_schema = ReadJson(PATH_JSONSCHEMA)
             except FileNotFoundError as e:
                 logger.error(f"AuthUser用JSONSCHEMAが見つかりません : {e}")
                 
@@ -80,7 +78,7 @@ def GetAuthUser():
     # MakeSession()ハンドリング
     
     try:
-        session = MakeSession(CE)
+        session = MakeSession(CE).getSession()
     except Exception as e:
         logger.error("セッション作成エラーです")
         
@@ -91,12 +89,38 @@ def GetAuthUser():
     
     # Requestデータのセット
     contents = request.get_json()
-    userID = contents["userID"]
-    password = contents["pass"]
+    input_userID = contents["userID"]
+    input_password = contents["pass"]
     
     # データベースのデータを確保
-    users = session.query(User).all()
+    userRecord = session.query(USER).filter(USER.userID == input_userID).all()
     
+    # 取得データ数が０であればuserID不正として処理
+    if(len(userRecord) == 0):
+        logger.debug(f"userIDが不正です : {input_userID}")
+        
+        return Response(response=json.dumps(''), status=401)
+    
+    else:
+        # 必要データを取っておく
+        userID = userRecord[0].userID
+        password = userRecord[0].password
+        salt = userRecord[0].salt
+        
+        # 送信されたパスワードをハッシュ化して照合
+        # ハッシュ化する
+        hashed_input_passowrd = HashText(input_password, salt, PAPPER)
+        
+        # 照合する
+        if(not hashed_input_passowrd == password):
+            logger.debug(f"userIDに対するパスワードが不正です : {input_userID} {hashed_input_passowrd}")
+            print(password)
+        
+            return Response(response=json.dumps(''), status=401)
+    
+    # パスワードによる認証が成功したため，セッションIDの発行に移る
+    
+    # uuidとしてsessionIDを発行する
     
     
         

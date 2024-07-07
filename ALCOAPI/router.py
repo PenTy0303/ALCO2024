@@ -1,6 +1,5 @@
 # 標準モジュール
 from flask import Flask
-import logging
 
 # 自作モジュール（相対実行ファイルであるServerから見た相対インポートであることに注意）
 from ALCOAPI.Controller.v1_0_0.AuthUser import AuthUser
@@ -21,3 +20,4 @@ router.logger.disabled = True
 
 # setLogger実行
 setLogger.SetLogger()
+
