@@ -34,7 +34,7 @@ PAPPER = os.environ["PAPPER"]
 @AuthUser.route("", methods=['POST'])
 def GetAuthUser():
     
-    # CreateHistory(request, "POST")
+    CreateHistory(REQUEST=request, method="POST",type="GetAuthUser")
     
     response = {}
 

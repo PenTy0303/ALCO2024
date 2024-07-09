@@ -6,3 +6,13 @@
 2024-07-10 04:29:59,105 - MainLog - DEBUG - create any handlers sucseeded!
 2024-07-10 04:30:21,824 - MainLog - DEBUG - create any handlers sucseeded!
 2024-07-10 04:31:14,900 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 04:53:12,027 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 04:53:12,440 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 04:53:16,705 - MainLog.CreateHistory - ERROR - セッション作成エラーです : Could not determine join condition between parent/child tables on relationship USER.clientHistory - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2024-07-10 04:53:52,365 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 04:54:23,195 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 04:56:15,005 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 04:57:33,440 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 04:57:49,079 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 05:00:15,181 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 05:00:15,586 - MainLog - DEBUG - create any handlers sucseeded!
