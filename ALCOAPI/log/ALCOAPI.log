@@ -16,3 +16,20 @@
 2024-07-10 04:57:49,079 - MainLog - DEBUG - create any handlers sucseeded!
 2024-07-10 05:00:15,181 - MainLog - DEBUG - create any handlers sucseeded!
 2024-07-10 05:00:15,586 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 05:07:54,362 - MainLog.AuthUser - ERROR - requestBodyの形式が一致しません : 'pass' is a required property
+
+Failed validating 'required' in schema:
+    {'$schema': 'http://json-schema.org/draft-07/schema#',
+     'description': 'RequestBodySchema for AuthUser/v1.0.0',
+     'properties': {'pass': {'type': 'string'},
+                    'userID': {'type': 'string'}},
+     'required': ['userID', 'pass'],
+     'title': 'AuthUserRequestBodySchema',
+     'type': 'object'}
+
+On instance:
+    {'pas': 'admin', 'userID': '00000000'}
+2024-07-10 05:08:15,179 - MainLog.AuthUser - DEBUG - userIDに対するパスワードが不正です : 00000000 f3f5f28d24fdf067f59d1e4f298b1afe7c3d0dc8811012b5d6edc9fc1d3391d2
+2024-07-10 05:09:14,631 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 05:09:15,026 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 05:09:21,808 - MainLog.AuthUser - DEBUG - userIDに対するパスワードが不正です : 00000000 149236e9af6dfe5b56611bf9a4662b4815f2baeaf1e3e435aa81862e8a2ff7ab

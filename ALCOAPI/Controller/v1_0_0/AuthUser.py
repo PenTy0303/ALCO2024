@@ -113,7 +113,6 @@ def GetAuthUser():
         # 照合する
         if(not hashed_input_passowrd == password):
             logger.debug(f"userIDに対するパスワードが不正です : {input_userID} {hashed_input_passowrd}")
-            print(password)
         
             return Response(response=json.dumps(''), status=401)
     

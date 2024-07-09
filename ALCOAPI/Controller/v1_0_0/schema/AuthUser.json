@@ -4,6 +4,10 @@
     "description" : "RequestBodySchema for AuthUser/v1.0.0",
 
     "type" : "object",
+    "required": [
+        "userID",
+        "pass"
+    ],
     "properties" : {
         "userID" : {
             "type" : "string"
