@@ -2,18 +2,22 @@
 from sqlalchemy.orm import sessionmaker
 
 # 自作モジュール
-from CreateEngine import CreateEngine
+from logging import getLogger
 
 class MakeSession():
     
     # セッションを作成する
-    def __init__(self):
+    def __init__(self, CE):
         
         # ベタ打ちにはしたくない
-        CE = CreateEngine()
-        SessionClass = sessionmaker(CE.getEngine())
-        self._session = SessionClass()
+        self.Session = sessionmaker(autocommit=False, autoflush=False, bind=CE.getEngine())
+        
+        # loggerの管理
+        self.logger = getLogger("MainLog").getChild("Session")
     
     # getter
     def getSession(self):
-        return self._session
+        session = self.Session()
+        return session
+            
+        

@@ -1,5 +1,5 @@
 # sqlalchemyにおけるテーブルのベースクラス
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 # 制約
 from sqlalchemy import ForeignKey
@@ -10,6 +10,7 @@ from sqlalchemy.types import Integer, String, BigInteger, DateTime
 
 Base = declarative_base()
 
+# USER テーブル作成
 class USER(Base):
     
     # metadata
@@ -21,18 +22,24 @@ class USER(Base):
     name = Column(String(255), nullable=False)
     password = Column(String(255), nullable=False)
     salt = Column(String(255), nullable=False)
-    userDataID = Column(String(8), ForeignKey("USERData.userDataID"), nullable=False, unique=True)
+    userDataID = Column(String(8), nullable=False, unique=True)
+    
+    # USERDataテーブルとのリレーション
+    userData = relationship("USERData")
+    userSession = relationship("USERSession")
+    clientHistory = relationship("CLIENTHistory")
     
     # CRUDMethods
 
 
+# USERDataテーブル作成
 class USERData(Base):
     
     # metadata
     __tablename__ = "USERData"
     
     # columns
-    userDataID = Column(String(8), primary_key=True, nullable=False, autoincrement=False)
+    userDataID = Column(String(8), ForeignKey("USER.userDataID", ondelete="CASCADE", onupdate="CASCADE") , primary_key=True, nullable=False, autoincrement=False)
     totalSteps = Column(BigInteger)
     todaySteps = Column(BigInteger)
     point = Column(BigInteger)
@@ -41,7 +48,8 @@ class USERData(Base):
     weekSteps = Column(String(255))
     
     # CURDMethods
-    
+
+# USERSessionテーブル作成
 class USERSession(Base):
     
     # metadata
@@ -49,12 +57,13 @@ class USERSession(Base):
     
     # columns
     sessionID = Column(String(8), primary_key=True, nullable=False, autoincrement=False)
-    userID = Column(String(8), ForeignKey("USER.userID"), nullable=False)
+    userID = Column(String(8), ForeignKey("USER.userID", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
     expiredDate = Column(DateTime, nullable=False)
     state = Column(String(255), nullable=False)
     
     # CRUDMethods
-    
+
+# CLIENTHistoryテーブル作成
 class CLIENTHistory(Base):
     
     # metadata
@@ -62,13 +71,13 @@ class CLIENTHistory(Base):
     
     # columns
     id = Column(BigInteger, primary_key=True, autoincrement=True)
-    userID = Column(String(8), ForeignKey("USER.userID"), nullable=False)
-    datae = Column(DateTime, nullable=False)
+    userID = Column(String(8), ForeignKey("USER.userID", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
+    date = Column(DateTime, nullable=False)
     type = Column(String(255), nullable=False)
     payload = Column(String(1024), nullable=False)
     
     # CRUDMethods
-    
+
 
 
 if(__name__ == "__main__"):
