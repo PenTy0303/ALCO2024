@@ -12,8 +12,7 @@ from ALCOAPI.DB.makeSession import MakeSession
 from ALCOAPI.DB.models import USER, USERData, USERSession, CLIENTHistory
 
 from ALCOAPI.Controller.v1_0_0.CreateHistory import CreateHistory
-from ALCOAPI.Controller.v1_0_0.tools import ReadJson, HashText, CreateUUID
-
+from ALCOAPI.Controller.v1_0_0.tools import ReadJson, HashText, CreateSessionID
 
 
 # 機能分割用のBluePrint登録
@@ -120,7 +119,15 @@ def GetAuthUser():
     
     # パスワードによる認証が成功したため，セッションIDの発行に移る
     
-    # uuidとしてsessionIDを発行する
+    # uuidとしてsessionIDを発行する(DBへの登録まで)
+    sessionID = CreateSessionID(session, USERSession, userID)
+    
+    response["sessionID"] = sessionID
+    
+    return Response(response=json.dumps(response), status=200)
+    
+    
+    
     
     
         
