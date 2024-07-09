@@ -33,3 +33,6 @@ On instance:
 2024-07-10 05:09:14,631 - MainLog - DEBUG - create any handlers sucseeded!
 2024-07-10 05:09:15,026 - MainLog - DEBUG - create any handlers sucseeded!
 2024-07-10 05:09:21,808 - MainLog.AuthUser - DEBUG - userIDに対するパスワードが不正です : 00000000 149236e9af6dfe5b56611bf9a4662b4815f2baeaf1e3e435aa81862e8a2ff7ab
+2024-07-10 05:15:12,809 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 05:15:13,573 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-10 05:15:21,419 - MainLog.AuthUser - DEBUG - userIDが不正です : 0000000

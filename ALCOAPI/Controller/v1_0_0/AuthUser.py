@@ -12,7 +12,7 @@ from ALCOAPI.DB.makeSession import MakeSession
 from ALCOAPI.DB.models import USER, USERData, USERSession, CLIENTHistory
 
 from ALCOAPI.Controller.v1_0_0.CreateHistory import CreateHistory
-from ALCOAPI.Controller.v1_0_0.tools import ReadJson, HashText, CreateSessionID
+from ALCOAPI.Controller.v1_0_0.tools import ReadJson, HashText, GetSessionID
 
 
 # 機能分割用のBluePrint登録
@@ -44,7 +44,7 @@ def GetAuthUser():
     try:
         request.headers["Content-Type"]
     except KeyError as e:
-        logger.error(f"requestHeaderにContent-Typeを含みません : {e}")
+        logger.debug(f"requestHeaderにContent-Typeを含みません : {e}")
                 
         return Response(response=json.dumps(''), status=401)
     
@@ -63,11 +63,11 @@ def GetAuthUser():
             validate(request.json, json_schema)
         
         except ValidationError as e:
-            logger.error(f"requestBodyの形式が一致しません : {e}")
+            logger.debug(f"requestBodyの形式が一致しません : {e}")
                 
             return Response(response=json.dumps(''), status=401)
     else:
-        logger.error(f"Content-Typeが異なります")
+        logger.debug(f"Content-Typeが異なります")
                 
         return Response(response=json.dumps(''), status=401)
     
@@ -119,7 +119,7 @@ def GetAuthUser():
     # パスワードによる認証が成功したため，セッションIDの発行に移る
     
     # uuidとしてsessionIDを発行する(DBへの登録まで)
-    sessionID = CreateSessionID(session, USERSession, userID)
+    sessionID = GetSessionID(session, USERSession, userID)
     
     response["sessionID"] = sessionID
     
