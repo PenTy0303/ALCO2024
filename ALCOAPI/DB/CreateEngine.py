@@ -6,7 +6,7 @@ class CreateEngine():
     # コンストラクタ
     def __init__(self):
         dialect, userName, passWord, host, database = "mysql", "alco", "alco2024", "localhost", "alcodb"
-        self._engine = create_engine(f"{dialect}://{userName}:{passWord}@{host}/{database}")
+        self._engine = create_engine(f"{dialect}://{userName}:{passWord}@{host}/{database}", echo=True)
     
     # getter
     def getEngine(self):
