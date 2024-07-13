@@ -69,7 +69,7 @@ class CLIENTHistory(Base):
     __tablename__ = "CLIENTHistory"
     
     # columns
-    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(DateTime, nullable=False)
     type = Column(String(255), nullable=False)
     method = Column(String(255), nullable=False)
