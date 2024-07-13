@@ -1,20 +1,20 @@
 {
     "$schema" : "http://json-schema.org/draft-07/schema#",
-    "title" : "AuthUserRequestBodySchema",
-    "description" : "RequestBodySchema for AuthUser/v1.0.0",
+    "title" : "CreateUserRequestBodySchema",
+    "description" : "RequestBodySchema for CreateUser/v1.0.0",
 
     "type" : "object",
     "required": [
-        "userID",
+        "name",
         "pass"
     ],
     "additionalProperties": false,
     "properties" : {
-        "userID" : {
-            "type" : "string",
+        "name" : {
+            "type": "string",
             "pattern": "[a-zA-Z0-9]",
-            "minLength": 8,
-            "maxLength": 8
+            "minLength": 1,
+            "maxLength": 255
         },
         "pass" : {
             "type" : "string"
