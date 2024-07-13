@@ -34,7 +34,9 @@ def _CreateUUID(num = 8):
     return h()
 
 # セッションIDを作成及び，チェックを行う
-def GetSessionID(session, table, userID):
+def GetSessionID(session, userSession, userID):
+    
+    table = userSession
     
     # 同様のIDが他にあるかどうかをチェック
     result = session.query(table).filter(table.userID == userID).all()
@@ -68,6 +70,32 @@ def GetSessionID(session, table, userID):
     session.commit()
         
     return sessionID
+
+# UESRIDを発行する
+def CreateUserID(session, user, userData):
+    
+    # 現在のテーブル状況を取得
+    current_user = session.query(user).all()
+    current_userData = session.query(userData).all()
+    
+    # userIDを重複しないように発行
+    while(True):
+        userID = _CreateUUID(8)
+        
+        if(len([True for i in current_user if i.userID == userID]) == 0):
+            break
+    
+    # USERDataIDを発行する
+    while(True):
+        userDataID = _CreateUUID(8)
+        
+        if(len([True for i in current_userData if i.userDataID == userDataID]) == 0):
+            break
+        
+    # 発行したものを返却する
+    
+    return {"userID":userID, "userDataID":userDataID}
+    
 
 # 文字列同士の比較をセキュアに行う
 def VerifyString(base, target, min_length=-1):

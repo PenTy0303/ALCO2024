@@ -3,13 +3,12 @@ from flask import Blueprint, request, Response
 import json
 from jsonschema import validate, ValidationError
 from logging import getLogger
-import hashlib
 import os
 
 # 自作モジュール
 from ALCOAPI.DB.CreateEngine import CreateEngine
 from ALCOAPI.DB.makeSession import MakeSession
-from ALCOAPI.DB.models import USER, USERData, USERSession, CLIENTHistory
+from ALCOAPI.DB.models import USER, USERSession
 
 from ALCOAPI.Controller.v1_0_0.CreateHistory import CreateHistory
 from ALCOAPI.Controller.v1_0_0.tools import ReadJson, HashText, GetSessionID, VerifyString
@@ -32,9 +31,9 @@ PAPPER = os.environ["PAPPER"]
 
 # router
 @AuthUser.route("", methods=['POST'])
-def GetAuthUser():
+def PostAuthUser():
     
-    CreateHistory(REQUEST=request, method="POST",type="GetAuthUser")
+    CreateHistory(REQUEST=request, method="POST",type="PostAuthUser")
     
     response = {}
 
@@ -124,10 +123,3 @@ def GetAuthUser():
     response["sessionID"] = sessionID
     
     return Response(response=json.dumps(response), status=200)
-    
-    
-    
-    
-    
-        
-    
