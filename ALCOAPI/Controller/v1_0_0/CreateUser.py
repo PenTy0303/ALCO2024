@@ -45,8 +45,9 @@ def PostCreateUser():
         request.headers["Content-Type"]
     except KeyError as e:
         logger.debug(f"requestHeaderにContent-Typeを含みません : {e}")
-                
-        return Response(response=json.dumps(''), status=401)
+        
+        response["message"] = "Not found Content-Type"
+        return Response(response=json.dumps(response), status=401)
     
     if(request.headers["Content-Type"] == "application/json"):
         
@@ -58,18 +59,21 @@ def PostCreateUser():
             except FileNotFoundError as e:
                 logger.error(f"CreateUser用JSONSCHEMAが見つかりません : {e}")
                 
-                return Response(response=json.dumps(''), status=401)
+                response["message"] = "InternalserverError"
+                return Response(response=json.dumps(response), status=500)
             
             validate(request.json, json_schema)
         
         except ValidationError as e:
             logger.debug(f"requestBodyの形式が一致しません : {e}")
                 
-            return Response(response=json.dumps(''), status=401)
+            response["message"] = "Not Verified request form"
+            return Response(response=json.dumps(response), status=401)
     else:
         logger.debug(f"Content-Typeが異なります")
                 
-        return Response(response=json.dumps(''), status=401)
+        response["message"] = "Not apply Content-Type"
+        return Response(response=json.dumps(response), status=401)
     
     # リクエストボディの形式が一致したため，具体的な処理に移る
     
@@ -138,7 +142,8 @@ def PostCreateUser():
     else:
         logger.debug(f"nameが重複しています {input_name}")
         
-        return Response(response=json.dumps(''), status=401)
+        response["message"] = "Duplicate Name"
+        return Response(response=json.dumps(response), status=401)
     
     
     

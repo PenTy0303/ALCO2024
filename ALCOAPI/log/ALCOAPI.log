@@ -46,3 +46,10 @@ Failed validating 'minLength' in schema['properties']['userID']:
 On instance['userID']:
     '1b78169'
 2024-07-13 17:54:08,643 - MainLog.CreateUser - DEBUG - nameが重複しています torotoro
+2024-07-13 17:57:59,203 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-13 17:59:51,201 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-13 17:59:54,215 - MainLog.CreateUser - DEBUG - nameが重複しています torotoro
+2024-07-13 18:00:11,851 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-13 18:00:13,863 - MainLog.CreateUser - ERROR - CreateUser用JSONSCHEMAが見つかりません : [Errno 2] No such file or directory: 'ALCOAPI/Controller/v1_0_0/schema/CreateUser.jso'
+2024-07-13 18:00:30,395 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-13 18:01:27,314 - MainLog - DEBUG - create any handlers sucseeded!

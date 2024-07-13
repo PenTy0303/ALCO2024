@@ -57,7 +57,7 @@ def PostAuthUser():
             except FileNotFoundError as e:
                 logger.error(f"AuthUser用JSONSCHEMAが見つかりません : {e}")
                 
-                return Response(response=json.dumps(''), status=401)
+                return Response(response=json.dumps(''), status=500)
             
             validate(request.json, json_schema)
         
