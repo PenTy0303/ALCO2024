@@ -18,6 +18,8 @@ def init(session):
     
     
     session.commit()
+    
+    session.close()
 
 if(__name__ == "__main__"):
     # エンジンの作成

@@ -1,6 +1,7 @@
 # 標準モジュール
 from flask import Flask, request
 import json
+import datetime
 from logging import getLogger
 
 # 自作モジュール
@@ -15,13 +16,37 @@ logger = getLogger("MainLog").getChild("CreateHistory")
 CE = CreateEngine()
 
 # アクセス履歴保存method
-def CreateHistory(REQUEST, METHOD):
+def CreateHistory(REQUEST, method, type):
     try:
         session = MakeSession(CE).getSession()
         CH = CLIENTHistory()
     except Exception as e:
         logger.error(f"セッション作成エラーです : {e}")
         
-        return
+        return False
         
-    # そのリクエストの種別はなにか
+    # bodyにデータが入っているのかqueryにデータが入っているのか
+    if(method == "POST"):
+        # POST
+        payload = json.dumps(REQUEST.get_json())
+    else:
+        # GET
+        payload = json.dumps(REQUEST.args.to_dict())
+        
+    # データの登録
+    CH.date = datetime.datetime.now()
+    CH.type = type
+    CH.method = method
+    CH.payload = payload
+    
+    session.add(CH)
+    
+    session.commit()
+    
+    session.close()
+    
+    return True
+        
+    
+
+    

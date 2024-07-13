@@ -27,7 +27,6 @@ class USER(Base):
     # USERDataテーブルとのリレーション
     userData = relationship("USERData")
     userSession = relationship("USERSession")
-    clientHistory = relationship("CLIENTHistory")
     
     # CRUDMethods
 
@@ -71,9 +70,9 @@ class CLIENTHistory(Base):
     
     # columns
     id = Column(BigInteger, primary_key=True, autoincrement=True)
-    userID = Column(String(8), ForeignKey("USER.userID", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
     date = Column(DateTime, nullable=False)
     type = Column(String(255), nullable=False)
+    method = Column(String(255), nullable=False)
     payload = Column(String(1024), nullable=False)
     
     # CRUDMethods

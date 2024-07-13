@@ -8,12 +8,14 @@ import datetime
 
 # 自作モジュール
 
+# JSONを読み込む
 def ReadJson(path):
     with open(path, mode = "r") as f:
         response = json.load(f)
         
     return response
 
+# 文字列をSHA256でハッシュ化する
 def HashText(*text):
     # 文字列結合
     joinedText = "".join(text).encode('utf-8')
@@ -24,13 +26,15 @@ def HashText(*text):
     # 16進数化したものを返却
     return hashedText.hexdigest()
 
+# UUIDを生成する（内部）
 def _CreateUUID(num = 8):
     x = lambda: string.hexdigits[random.randint(0, 15)]
     h = lambda: "".join([x() for _ in range(0, num)])
     
     return h()
 
-def CreateSessionID(session, table, userID):
+# セッションIDを作成及び，チェックを行う
+def GetSessionID(session, table, userID):
     
     # 同様のIDが他にあるかどうかをチェック
     result = session.query(table).filter(table.userID == userID).all()
@@ -64,6 +68,39 @@ def CreateSessionID(session, table, userID):
     session.commit()
         
     return sessionID
+
+# 文字列同士の比較をセキュアに行う
+def VerifyString(base, target, min_length=-1):
+    base_length = len(base)
+    target_length = len(target)
+    
+    if(base_length > target_length):
+        length = base_length
+    else:
+        length = target_length
+    flag = True
+    
+    # そもそもmin_lengthが指定されていないか，検索の最小回数lengthを超えていないため，最小回数で実行する
+    if(min_length == -1 and length > min_length):
+        for i in range(length):
+            try:
+                if(base[i] != target[i]):
+                    flag = False
+            except IndexError as e:
+                flag = False
+                    
+    # 所定の回数確実に比較を行う．
+    else:
+        for i in range(min_length):
+            try:
+                if(base[i] != target[i]):
+                    flag = False
+            except:
+                flag = False
+    
+    # 判定結果はflagに格納されている．
+    return flag
+                
     
     
     
