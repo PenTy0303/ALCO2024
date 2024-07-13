@@ -68,6 +68,39 @@ def GetSessionID(session, table, userID):
     session.commit()
         
     return sessionID
+
+# 文字列同士の比較をセキュアに行う
+def VerifyString(base, target, min_length=-1):
+    base_length = len(base)
+    target_length = len(target)
+    
+    if(base_length > target_length):
+        length = base_length
+    else:
+        length = target_length
+    flag = True
+    
+    # そもそもmin_lengthが指定されていないか，検索の最小回数lengthを超えていないため，最小回数で実行する
+    if(min_length == -1 and length > min_length):
+        for i in range(length):
+            try:
+                if(base[i] != target[i]):
+                    flag = False
+            except IndexError as e:
+                flag = False
+                    
+    # 所定の回数確実に比較を行う．
+    else:
+        for i in range(min_length):
+            try:
+                if(base[i] != target[i]):
+                    flag = False
+            except:
+                flag = False
+    
+    # 判定結果はflagに格納されている．
+    return flag
+                
     
     
     
