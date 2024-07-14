@@ -5,6 +5,8 @@ from jsonschema import validate, ValidationError
 from logging import getLogger
 import os
 import datetime
+import re
+
 # 自作モジュール
 from ALCOAPI.DB.CreateEngine import CreateEngine
 from ALCOAPI.DB.makeSession import MakeSession
@@ -21,6 +23,19 @@ logger = getLogger("MainLog").getChild("HandleUserData")
 
 # グローバル変数の取得
 PATH_JSONSCHEMA = "ALCOAPI/Controller/v1_0_0/schema/HandleUesrData_PutUserData.json"
+
+PATTERN_NUM = re.compile(r'[0-9]')
+MAX_LOWEST = 10
+
+# RankedItemの定義
+# 0 USERData.totalSteps, 1 USERData.todaySteps, 2 USERData.point, 3 USERData.favirableRate
+RANKED_ITEMS = {
+                "0000":[0, 1, 2, 3], 
+                "0001":[0], 
+                "0002":[1], 
+                "0003":[2], 
+                "0004":[3]
+               }
 
 # method
 
@@ -90,4 +105,113 @@ def HandleUserData_PutUesrData(userID):
 @HandleUserData.route("", methods=["GET"])
 def HandleUserData_GetUserDataRanking():
     
-    return ""
+    # 履歴の登録
+    CreateHistory(REQUEST=request, method="GET", type="HandleUserData_GetUserDataRanking")
+    
+    response = {}
+    
+    # クエリを取得
+    try:
+        input_RankedItem = request.args["RankedItem"]
+    except KeyError as e:
+        logger.debug(f"クエリが正確ではありません {e}")
+        
+        return Response(response=json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+        
+    # RankedItemが指定のものかどうか    
+    if(not input_RankedItem in RANKED_ITEMS.keys()):
+        return Response(response=json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+    
+    # input_lowertは数値かどうか
+    
+    try:
+        input_lowest = request.args["lowest"]
+        if(PATTERN_NUM.search(input_lowest)):
+            input_lowest = int(input_lowest)
+            input_lowest = input_lowest if input_lowest < MAX_LOWEST else MAX_LOWEST
+        else:
+            return Response(response=json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+    except KeyError:
+        input_lowest = 5
+    
+    # クエリの形式は正常でなので，具体的な処理に移る
+    
+    # DBセションを確立する
+    try:
+        CE = CreateEngine()
+        session = MakeSession(CE).getSession()
+    except Exception as e:
+        logger.debug(f"セッションが確立できませんでした {e}")
+        
+        return Response(response = json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+    
+    # データを取得する
+    response["length"] = len(RANKED_ITEMS[input_RankedItem])
+    response["responses"] = []
+    
+    # データの書き込み
+    for col in RANKED_ITEMS[input_RankedItem]:
+        tmp_result = {}
+        
+        if(col == 0):
+            tmp_result["RankedItem"] = "totalSteps"
+            
+            userData = session.query(USER,USERData).\
+                join(USER, USER.userDataID == USERData.userDataID).\
+                order_by(USERData.totalSteps).\
+                limit(input_lowest).\
+                all()
+                
+            print("dfsf" , userData[0])
+            
+            tmp_result["length"] = len(userData)
+            tmp_result["data"] = [{"name":i[0].name, "data":i[1].totalSteps} for i in userData]
+            
+            
+        
+        elif (col == 1):
+            tmp_result["RankedItem"] = "todaySteps"
+            
+            userData = session.query(USER,USERData).\
+                join(USER, USER.userDataID == USERData.userDataID).\
+                order_by(USERData.todaySteps).\
+                limit(input_lowest).\
+                all()
+            
+            print(userData[0])
+            
+            tmp_result["length"] = len(userData)
+            tmp_result["data"] = [{"name":i[0].name, "data":i[1].todaySteps} for i in userData]
+            
+            
+            
+        elif (col == 2):
+            tmp_result["RankedItem"] = "point"
+            
+            userData = session.query(USER,USERData).\
+                join(USER, USER.userDataID == USERData.userDataID).\
+                order_by(USERData.point).\
+                limit(input_lowest).\
+                all()
+            
+            tmp_result["length"] = len(userData)
+            tmp_result["data"] = [{"name":i[0].name, "data":i[1].point} for i in userData]
+            
+            
+        
+        elif (col == 3):
+            tmp_result["RankedItem"] = "favorableRate"
+            
+            userData = session.query(USER,USERData).\
+                join(USER, USER.userDataID == USERData.userDataID).\
+                order_by(USERData.favorableRate).\
+                limit(input_lowest).\
+                all()
+            
+            tmp_result["length"] = len(userData)
+            tmp_result["data"] = [{"name":i[0].name, "data":i[1].favorableRate} for i in userData]
+            
+        response["responses"].append(tmp_result)
+        
+    
+    return Response(response=json.dumps(response), headers={"Content-Type": "application/json"}, status=200)
