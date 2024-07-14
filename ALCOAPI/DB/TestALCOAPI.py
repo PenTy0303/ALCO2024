@@ -1,0 +1,75 @@
+if(__name__ == "__main__"): 
+    import os
+    import random
+    import datetime
+    import json
+    import requests
+    from models import USER, USERData
+    from CreateEngine import CreateEngine
+    from makeSession import MakeSession
+
+    users = ["inamori", "inagawa", "imoto", "imazato", "takatosi", "Xx_fps_shake_xX", "takemoto", "banndou", "uwano", "ishimizu", "mori"]
+    passwords = ["sample", "sample", "sample", "sample","sample","sample", "sample", "sample", "sample", "sample"]
+    userIDs = ["1242f353", "e09e6a90", "fbd9f8b6", "94e49b24", "1e50b217", "8e016722", "2ec60030", "ec02f7be", "a14451b3", "15d35444"]
+
+
+    url1 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/CreateUser"
+    url2 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/AuthUser"
+    
+    
+
+    for u,p, id in zip(users, passwords, userIDs):
+        payload = {"name":str(u), "pass": str(p)}
+        response = requests.post(
+            url1, 
+            headers={"Content-Type": "application/json"}, 
+            data=json.dumps(payload)
+            ).json()
+        
+        print(response)
+        if("userID" in response.keys()):
+            payload = {"userID":str(response["userID"]), "pass": p}
+            response = requests.post(
+                url2, 
+                headers = {"Content-Type": "application/json"},
+                data=json.dumps(payload)
+                ).json()
+            
+            print(response)
+        else:
+            payload = {"userID":id, "pass": p}
+            response = requests.post(
+                url2, 
+                headers = {"Content-Type": "application/json"}, 
+                data=json.dumps(payload)
+                ).json
+            
+            print(response)
+            
+        
+    CE = CreateEngine()
+    session = MakeSession(CE).getSession()
+    
+    for u,p in zip(users, passwords):
+        user = session.query(USER).filter(USER.name == u).all()
+        userDataID = user[0].userDataID
+        
+        data = session.query(USERData).filter(USERData.userDataID == userDataID).all()
+        data = data[0]
+        
+        steps = [random.randint(10, 10000) for _ in range(7)]
+        
+        data.totalSteps = sum(steps)
+        data.todaySteps = steps[0]
+        data.point = random.randint(0, 100)
+        data.favorableRate = random.randint(0, 100)
+        data.reloadedDate = datetime.datetime.now()
+        data.weekSteps = json.dumps(dict([("0"+str(i+1), steps[i]) for i in range(7)]))
+        
+        session.flush()
+        
+    
+    session.commit()
+    
+    session.close()
+        

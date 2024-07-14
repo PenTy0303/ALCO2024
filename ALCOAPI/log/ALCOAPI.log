@@ -1,62 +1,143 @@
-2024-07-13 16:33:12,540 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 16:35:26,428 - MainLog.AuthUser - DEBUG - userIDãŒä¸æ­£ã§ã™ : masui
-2024-07-13 16:38:25,886 - MainLog.AuthUser - DEBUG - userIDãŒä¸æ­£ã§ã™ : masui
-2024-07-13 17:09:12,832 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:09:13,547 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:09:45,281 - MainLog.CreateUser - DEBUG - requestBodyã®å½¢å¼ãŒä¸€è‡´ã—ã¾ã›ã‚“ : 'name' is a required property
-
-Failed validating 'required' in schema:
-    {'$schema': 'http://json-schema.org/draft-07/schema#',
-     'additionalProperties': False,
-     'description': 'RequestBodySchema for CreateUser/v1.0.0',
-     'properties': {'name': {'maxLength': 255,
-                             'minLength': 1,
-                             'pattern': '[a-zA-Z0-9]',
-                             'type': 'string'},
-                    'pass': {'type': 'string'}},
-     'required': ['name', 'pass'],
-     'title': 'CreateUserRequestBodySchema',
-     'type': 'object'}
-
-On instance:
-    {'pass': 'admin', 'userID': 'name'}
-2024-07-13 17:11:11,794 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:11:38,659 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:11:59,545 - MainLog.CreateUser - DEBUG - requestBodyã®å½¢å¼ãŒä¸€è‡´ã—ã¾ã›ã‚“ : '' does not match '[a-zA-Z0-9]'
-
-Failed validating 'pattern' in schema['properties']['name']:
-    {'maxLength': 255,
-     'minLength': 1,
-     'pattern': '[a-zA-Z0-9]',
-     'type': 'string'}
-
-On instance['name']:
-    ''
-2024-07-13 17:50:37,338 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:50:38,053 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:52:11,334 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:53:11,387 - MainLog.AuthUser - DEBUG - requestBodyã®å½¢å¼ãŒä¸€è‡´ã—ã¾ã›ã‚“ : '1b78169' is too short
-
-Failed validating 'minLength' in schema['properties']['userID']:
-    {'maxLength': 8,
-     'minLength': 8,
-     'pattern': '[a-zA-Z0-9]',
-     'type': 'string'}
-
-On instance['userID']:
-    '1b78169'
-2024-07-13 17:54:08,643 - MainLog.CreateUser - DEBUG - nameãŒé‡è¤‡ã—ã¦ã„ã¾ã™ torotoro
-2024-07-13 17:57:59,203 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:59:51,201 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 17:59:54,215 - MainLog.CreateUser - DEBUG - nameãŒé‡è¤‡ã—ã¦ã„ã¾ã™ torotoro
-2024-07-13 18:00:11,851 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:00:13,863 - MainLog.CreateUser - ERROR - CreateUserç”¨JSONSCHEMAãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ : [Errno 2] No such file or directory: 'ALCOAPI/Controller/v1_0_0/schema/CreateUser.jso'
-2024-07-13 18:00:30,395 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:01:27,314 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:08:31,114 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:08:31,852 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:19:23,033 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:19:23,727 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:20:25,933 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:22:28,235 - MainLog - DEBUG - create any handlers sucseeded!
-2024-07-13 18:22:28,930 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:19:23,684 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:19:24,105 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:29:23,537 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:29:23,921 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:29:24,050 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:29:34,881 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:29:34,967 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 09:29:35,048 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 09:29:35,133 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 09:29:35,236 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 09:29:35,337 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:40:25,826 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:40:26,209 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:40:32,927 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:40:33,026 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 09:40:33,127 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 09:40:33,211 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 09:40:33,292 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 09:40:33,378 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:41:06,220 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:41:10,770 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:41:10,854 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 09:41:10,935 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 09:41:11,020 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 09:41:11,101 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 09:41:11,232 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:41:32,965 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:41:34,946 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:41:35,044 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 09:41:35,131 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 09:41:35,211 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 09:41:35,297 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 09:41:35,480 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:41:45,549 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:41:48,434 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:41:48,522 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 09:41:48,607 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 09:41:48,702 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 09:41:48,795 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 09:41:48,882 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:42:04,941 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:42:05,035 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 09:42:05,146 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 09:42:05,250 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 09:42:05,335 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 09:42:05,428 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:43:41,305 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:43:47,930 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:43:48,033 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 09:43:48,118 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 09:43:48,210 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 09:43:48,295 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 09:43:48,377 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 09:50:26,379 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:50:30,542 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 09:51:18,412 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 09:51:20,956 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 10:00:14,012 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:01:09,100 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:01:32,819 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:02:28,920 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:03:48,288 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:04:17,070 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:05:05,070 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:06:09,272 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:06:29,960 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:07:30,145 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:08:08,027 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:09:41,561 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:09:51,126 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:09:58,651 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:10:10,218 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:10:22,812 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:12:15,668 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:14:27,646 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:14:33,148 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:15:26,200 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:15:27,551 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:15:27,940 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:18:50,251 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:18:56,780 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:19:28,606 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:19:35,134 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:19:55,814 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:20:32,687 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:20:58,436 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:21:49,469 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:22:17,238 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:25:37,012 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:25:38,948 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 10:26:08,852 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:26:12,218 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 10:26:21,450 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:26:22,972 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 10:26:23,060 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 5522823a
+2024-07-14 10:26:23,153 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 10:26:23,226 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 493f6359
+2024-07-14 10:26:23,316 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 10:26:23,392 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 7f4c4650
+2024-07-14 10:26:23,482 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 10:26:23,559 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 7a043713
+2024-07-14 10:26:23,649 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 10:26:23,749 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 8d8b828f
+2024-07-14 10:26:23,849 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 10:26:23,938 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 727add4c
+2024-07-14 10:26:24,038 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takemoto
+2024-07-14 10:26:24,114 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : a1fd2cc5
+2024-07-14 10:26:24,192 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· banndou
+2024-07-14 10:26:24,282 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 994aac34
+2024-07-14 10:26:24,360 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· uwano
+2024-07-14 10:26:24,437 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : 3cde0da9
+2024-07-14 10:26:24,514 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· ishimizu
+2024-07-14 10:26:24,592 - MainLog.AuthUser - DEBUG - userID‚ª•s³‚Å‚· : dbc5e75b
+2024-07-14 10:29:52,750 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:30:06,339 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:30:45,223 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:30:57,824 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:31:23,271 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:31:23,654 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:33:12,364 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:36:00,792 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:36:03,831 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 10:36:53,855 - MainLog - DEBUG - create any handlers sucseeded!
+2024-07-14 10:36:56,328 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 10:36:56,592 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 10:36:56,847 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 10:36:57,102 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 10:36:57,359 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 10:36:57,613 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 10:36:57,859 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takemoto
+2024-07-14 10:36:58,113 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· banndou
+2024-07-14 10:36:58,347 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· uwano
+2024-07-14 10:36:58,581 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· ishimizu
+2024-07-14 10:37:25,212 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inamori
+2024-07-14 10:37:25,490 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· inagawa
+2024-07-14 10:37:25,758 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imoto
+2024-07-14 10:37:26,012 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· imazato
+2024-07-14 10:37:26,257 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takatosi
+2024-07-14 10:37:26,512 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· Xx_fps_shake_xX
+2024-07-14 10:37:26,764 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· takemoto
+2024-07-14 10:37:27,112 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· banndou
+2024-07-14 10:37:27,346 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· uwano
+2024-07-14 10:37:27,579 - MainLog.CreateUser - DEBUG - name‚ªd•¡‚µ‚Ä‚¢‚Ü‚· ishimizu
