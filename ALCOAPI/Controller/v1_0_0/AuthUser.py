@@ -122,4 +122,4 @@ def PostAuthUser():
     
     response["sessionID"] = sessionID
     
-    return Response(response=json.dumps(response), status=200)
+    return Response(response=json.dumps(response), headers={"Content-Type":"application/json"}, status=200)

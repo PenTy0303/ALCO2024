@@ -15,61 +15,69 @@ if(__name__ == "__main__"):
 
     url1 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/CreateUser"
     url2 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/AuthUser"
+    url3 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/HandleUserData/%s?sessionID=%s"
     
     
 
     for u,p, id in zip(users, passwords, userIDs):
         payload = {"name":str(u), "pass": str(p)}
-        response = requests.post(
+        response1 = requests.post(
             url1, 
             headers={"Content-Type": "application/json"}, 
             data=json.dumps(payload)
             ).json()
         
-        print(response)
-        if("userID" in response.keys()):
-            payload = {"userID":str(response["userID"]), "pass": p}
-            response = requests.post(
+        print(response1)
+        if("userID" in response1.keys()):
+            payload = {"userID":str(response1["userID"]), "pass": p}
+            
+            
+            response2 = requests.post(
                 url2, 
                 headers = {"Content-Type": "application/json"},
                 data=json.dumps(payload)
                 ).json()
             
-            print(response)
+            print(response2)
         else:
             payload = {"userID":id, "pass": p}
-            response = requests.post(
+            response2 = requests.post(
                 url2, 
                 headers = {"Content-Type": "application/json"}, 
                 data=json.dumps(payload)
-                ).json
+                ).json()
             
-            print(response)
+            print(response2)
+        
+        response3 = requests.get(
+            url=  (url3 % (id, response2["sessionID"]))
+        ).json()
+        print(response3)
             
         
-    CE = CreateEngine()
-    session = MakeSession(CE).getSession()
+    # CE = CreateEngine()
+    # session = MakeSession(CE).getSession()
     
-    for u,p in zip(users, passwords):
-        user = session.query(USER).filter(USER.name == u).all()
-        userDataID = user[0].userDataID
+    # for u,p in zip(users, passwords):
+    #     user = session.query(USER).filter(USER.name == u).all()
+    #     userDataID = user[0].userDataID
         
-        data = session.query(USERData).filter(USERData.userDataID == userDataID).all()
-        data = data[0]
+    #     data = session.query(USERData).filter(USERData.userDataID == userDataID).all()
+    #     data = data[0]
         
-        steps = [random.randint(10, 10000) for _ in range(7)]
+    #     steps = [random.randint(10, 10000) for _ in range(7)]
         
-        data.totalSteps = sum(steps)
-        data.todaySteps = steps[0]
-        data.point = random.randint(0, 100)
-        data.favorableRate = random.randint(0, 100)
-        data.reloadedDate = datetime.datetime.now()
-        data.weekSteps = json.dumps(dict([("0"+str(i+1), steps[i]) for i in range(7)]))
+    #     data.totalSteps = sum(steps)
+    #     data.todaySteps = steps[0]
+    #     data.point = random.randint(0, 100)
+    #     data.favorableRate = random.randint(0, 100)
+    #     data.reloadedDate = datetime.datetime.now()
+    #     data.weekSteps = json.dumps(dict([("0"+str(i+1), steps[i]) for i in range(7)]))
         
-        session.flush()
+    #     session.flush()
         
     
-    session.commit()
+    # session.commit()
     
-    session.close()
+    # session.close()
         

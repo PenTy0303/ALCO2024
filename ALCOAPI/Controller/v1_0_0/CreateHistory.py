@@ -16,7 +16,7 @@ logger = getLogger("MainLog").getChild("CreateHistory")
 CE = CreateEngine()
 
 # アクセス履歴保存method
-def CreateHistory(REQUEST, method, type):
+def CreateHistory(REQUEST, method, type, addition=""):
     try:
         session = MakeSession(CE).getSession()
         CH = CLIENTHistory()
@@ -31,7 +31,9 @@ def CreateHistory(REQUEST, method, type):
         payload = json.dumps(REQUEST.get_json())
     else:
         # GET
-        payload = json.dumps(REQUEST.args.to_dict())
+        tmp = REQUEST.args.to_dict()
+        tmp["url"] = addition
+        payload = json.dumps(tmp)
         
     # データの登録
     CH.date = datetime.datetime.now()

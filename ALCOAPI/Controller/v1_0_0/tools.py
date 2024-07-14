@@ -6,6 +6,9 @@ import string
 import datetime
 
 
+# グローバル変数
+DATE_FORMAT = "%Y/%m/%d %H:%M:%S.%s"
+
 # 自作モジュール
 
 # JSONを読み込む
@@ -129,7 +132,42 @@ def VerifyString(base, target, min_length=-1):
     # 判定結果はflagに格納されている．
     return flag
                 
+
+# sessionIDの有効性をチェックする
+def ValidateSessionID(session, USERSession, sessionID, userID):
     
+    # USERSessionの現在の状態を取得
+    current_USERSession = session.query(USERSession).all()
+    
+    # その中からsessionIDによるカラムを取得
+    current_session = [i for i in current_USERSession if i.sessionID == sessionID]
+    
+    if(len(current_session) == 0):
+        # sessionIDが存在しない
+        return False
+    
+    current_session = current_session[0]
+    
+    # そのセッションの状態をチェックする
+    if(current_session.state == "available"):
+        # そのセッションが有効時間内かどうかをチェックする
+        
+        expiredDate =current_session.expiredDate
+        # 期限内であった場合
+        if(datetime.datetime.now() <= expiredDate):
+            
+            # そのセッションがuserIDによるものかどうかをチェックする
+            if(current_session.userID == userID):
+                # そのセッションは有効である
+                
+                # 時間の更新を行う
+                current_session.expiredDate = datetime.datetime.now() + datetime.timedelta(days=7)
+                session.commit()
+                
+                return True
+    
+    # セッションは有効ではなかったことを示す       
+    return False
     
     
     

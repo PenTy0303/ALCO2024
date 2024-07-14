@@ -5,6 +5,8 @@ from flask import Flask
 # 機能群
 from ALCOAPI.Controller.v1_0_0.AuthUser import AuthUser
 from ALCOAPI.Controller.v1_0_0.CreateUser import CreateUser
+from ALCOAPI.Controller.v1_0_0.HandleUserData import HandleUserData
+
 
 # method
 import ALCOAPI.setLogger as setLogger
@@ -15,6 +17,7 @@ router.config.from_object('ALCOAPI.config')
 # BluePrintへ登録
 router.register_blueprint(AuthUser) # ver1のAPI群の追加
 router.register_blueprint(CreateUser)
+router.register_blueprint(HandleUserData)
 
 
 # method
