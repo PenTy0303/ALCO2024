@@ -29,6 +29,7 @@ MAX_LOWEST = 10
 
 # RankedItemの定義
 # 0 USERData.totalSteps, 1 USERData.todaySteps, 2 USERData.point, 3 USERData.favirableRate
+# もしランキング対象が増えることがあれば，ここに合わせて記述する
 RANKED_ITEMS = {
                 "0000":[0, 1, 2, 3], 
                 "0001":[0], 
@@ -127,10 +128,14 @@ def HandleUserData_GetUserDataRanking():
     try:
         input_lowest = request.args["lowest"]
         if(PATTERN_NUM.search(input_lowest)):
+            # 数値に変換して004等の入力を4に変換する
             input_lowest = int(input_lowest)
+            
+            # もし，MAX_LOWESTの値を超えてしまった場合はその値で抑える
             input_lowest = input_lowest if input_lowest < MAX_LOWEST else MAX_LOWEST
         else:
             return Response(response=json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+        
     except KeyError:
         input_lowest = 5
     
@@ -153,7 +158,10 @@ def HandleUserData_GetUserDataRanking():
     for col in RANKED_ITEMS[input_RankedItem]:
         tmp_result = {}
         
+        # orderbyの対象を分割して処理を変える
         if(col == 0):
+            # col=0はtotalStepsでOrderBy
+            
             tmp_result["RankedItem"] = "totalSteps"
             
             userData = session.query(USER,USERData).\
@@ -170,6 +178,8 @@ def HandleUserData_GetUserDataRanking():
             
         
         elif (col == 1):
+            # col=1はtodayStepsでOrderBy
+            
             tmp_result["RankedItem"] = "todaySteps"
             
             userData = session.query(USER,USERData).\
@@ -186,6 +196,8 @@ def HandleUserData_GetUserDataRanking():
             
             
         elif (col == 2):
+            # col=2はpointでOrderBy
+            
             tmp_result["RankedItem"] = "point"
             
             userData = session.query(USER,USERData).\
@@ -200,6 +212,8 @@ def HandleUserData_GetUserDataRanking():
             
         
         elif (col == 3):
+            # col=3はfavorableRateでOrderBy
+            
             tmp_result["RankedItem"] = "favorableRate"
             
             userData = session.query(USER,USERData).\
