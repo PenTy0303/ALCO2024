@@ -24,6 +24,7 @@ logger = getLogger("MainLog").getChild("HandleUserData")
 # グローバル変数の取得
 PATH_JSONSCHEMA = "ALCOAPI/Controller/v1_0_0/schema/HandleUesrData_PutUserData.json"
 
+PATTERN_USERID = re.compile(r'[a-zA-Z0-9]')
 PATTERN_NUM = re.compile(r'[0-9]')
 MAX_LOWEST = 10
 
@@ -39,10 +40,15 @@ RANKED_ITEMS = {
 
 # method
 
-@HandleUserData.route("/<userID>", methods=["GET"])
+@HandleUserData.route("/<string:userID>", methods=["GET"])
 def HandleUserData_GetUesrData(userID):
     # URLパーサーの戻り値を変換
-    input_userID = str(userID)
+    if(PATTERN_USERID.search(userID)):
+        input_userID = str(userID)
+    else:
+        logger.debug(f"USERIDが不正です")
+        
+        return Response(response = json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
     
     # アクセス履歴登録
     CreateHistory(REQUEST=request, method="GET", type="HandleUserData_GetUesrData", addition=input_userID)
@@ -95,9 +101,61 @@ def HandleUserData_GetUesrData(userID):
     
     
 
-@HandleUserData.route("/<userID>", methods=["PUT"])
+@HandleUserData.route("/<string:userID>", methods=["PUT"])
 def HandleUserData_PutUesrData(userID):
-    userID = str(userID)
+    # URLパーサーの戻り値を変換
+    if(PATTERN_USERID.search(userID)):
+        input_userID = str(userID)
+    else:
+        logger.debug(f"USERIDが不正です")
+        
+        return Response(response = json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+    
+    # 履歴の登録
+    CreateHistory(REQUEST=request, method="PUT", type="PutUserData")
+    
+    # 送られてきたデータをチェックする
+    response = {}
+    
+    # 必要な形式以外を弾く
+    
+    # Content-Type = application/json以外を弾く
+    
+    # まず，Content−Typeを含むかどうかをチェックする
+    try:
+        request.headers["Content-Type"]
+    except KeyError as e:
+        logger.debug(f"requestHeaderにContent-Typeを含みません : {e}")
+                
+        return Response(response=json.dumps(''), status=401)
+    
+    if(request.headers["Content-Type"] == "application/json"):
+        
+        # 形式が求めるものにあっているかをチェックする
+        try:
+            # そもそもJSONSCHEMAは存在するか
+            try:
+                json_schema = ReadJson(PATH_JSONSCHEMA)
+            except FileNotFoundError as e:
+                logger.error(f"HandleUserData用JSONSCHEMAが見つかりません : {e}")
+                
+                return Response(response=json.dumps(''), status=500)
+            
+            validate(request.json, json_schema)
+        
+        except ValidationError as e:
+            logger.debug(f"requestBodyの形式が一致しません : {e}")
+                
+            return Response(response=json.dumps(''), status=401)
+    else:
+        logger.debug(f"Content-Typeが異なります")
+                
+        return Response(response=json.dumps(''), status=401)
+    
+    # JSONSCEMAにあったリクエストが送られてきたため，具体的な処理に移る
+    
+    
+    
     
     return ""
 
