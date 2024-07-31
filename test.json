@@ -1,0 +1,157 @@
+{
+  "length": 4,
+  "responses": [
+    {
+      "RankedItem": "totalSteps",
+      "length": 8,
+      "data": [
+        {
+          "name": "masui",
+          "data": 0
+        },
+        {
+          "name": "takemoto",
+          "data": 21296
+        },
+        {
+          "name": "inamori",
+          "data": 21792
+        },
+        {
+          "name": "banndou",
+          "data": 26484
+        },
+        {
+          "name": "imazato",
+          "data": 31848
+        },
+        {
+          "name": "imoto",
+          "data": 33051
+        },
+        {
+          "name": "Xx_fps_shake_xX",
+          "data": 35161
+        },
+        {
+          "name": "uwano",
+          "data": 35904
+        }
+      ]
+    },
+    {
+      "RankedItem": "todaySteps",
+      "length": 8,
+      "data": [
+        {
+          "name": "masui",
+          "data": 0
+        },
+        {
+          "name": "inamori",
+          "data": 2197
+        },
+        {
+          "name": "takemoto",
+          "data": 2678
+        },
+        {
+          "name": "imoto",
+          "data": 4526
+        },
+        {
+          "name": "ishimizu",
+          "data": 5306
+        },
+        {
+          "name": "inagawa",
+          "data": 5950
+        },
+        {
+          "name": "imazato",
+          "data": 6515
+        },
+        {
+          "name": "banndou",
+          "data": 7676
+        }
+      ]
+    },
+    {
+      "RankedItem": "point",
+      "length": 8,
+      "data": [
+        {
+          "name": "masui",
+          "data": 0
+        },
+        {
+          "name": "takemoto",
+          "data": 1
+        },
+        {
+          "name": "Xx_fps_shake_xX",
+          "data": 5
+        },
+        {
+          "name": "inagawa",
+          "data": 31
+        },
+        {
+          "name": "banndou",
+          "data": 34
+        },
+        {
+          "name": "takatosi",
+          "data": 46
+        },
+        {
+          "name": "imoto",
+          "data": 69
+        },
+        {
+          "name": "inamori",
+          "data": 75
+        }
+      ]
+    },
+    {
+      "RankedItem": "favorableRate",
+      "length": 8,
+      "data": [
+        {
+          "name": "masui",
+          "data": 0
+        },
+        {
+          "name": "takemoto",
+          "data": 0
+        },
+        {
+          "name": "imoto",
+          "data": 6
+        },
+        {
+          "name": "banndou",
+          "data": 24
+        },
+        {
+          "name": "uwano",
+          "data": 28
+        },
+        {
+          "name": "ishimizu",
+          "data": 28
+        },
+        {
+          "name": "inamori",
+          "data": 30
+        },
+        {
+          "name": "Xx_fps_shake_xX",
+          "data": 31
+        }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,7 @@ from logging import getLogger
 import os
 import datetime
 import re
+from sqlalchemy import and_
 
 # 自作モジュール
 from ALCOAPI.DB.CreateEngine import CreateEngine
@@ -22,9 +23,9 @@ HandleUserData = Blueprint("HandleUesrData", __name__, url_prefix="/ALCOAPI/v1.0
 logger = getLogger("MainLog").getChild("HandleUserData")
 
 # グローバル変数の取得
-PATH_JSONSCHEMA = "ALCOAPI/Controller/v1_0_0/schema/HandleUesrData_PutUserData.json"
+PATH_JSONSCHEMA = "ALCOAPI/Controller/v1_0_0/schema/HandleUserData_PutUserData.json"
 
-PATTERN_USERID = re.compile(r'[a-zA-Z0-9]')
+PATTERN_UUID = re.compile(r'[a-zA-Z0-9]')
 PATTERN_NUM = re.compile(r'[0-9]')
 MAX_LOWEST = 10
 
@@ -43,7 +44,7 @@ RANKED_ITEMS = {
 @HandleUserData.route("/<string:userID>", methods=["GET"])
 def HandleUserData_GetUesrData(userID):
     # URLパーサーの戻り値を変換
-    if(PATTERN_USERID.search(userID)):
+    if(PATTERN_UUID.search(userID)):
         input_userID = str(userID)
     else:
         logger.debug(f"USERIDが不正です")
@@ -104,12 +105,26 @@ def HandleUserData_GetUesrData(userID):
 @HandleUserData.route("/<string:userID>", methods=["PUT"])
 def HandleUserData_PutUesrData(userID):
     # URLパーサーの戻り値を変換
-    if(PATTERN_USERID.search(userID)):
+    if(PATTERN_UUID.search(userID)):
         input_userID = str(userID)
     else:
         logger.debug(f"USERIDが不正です")
         
         return Response(response = json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+    
+    # クエリパラメータを取得
+    try:
+        input_sessionID = request.args["sessionID"]
+        if(PATTERN_UUID.search(input_sessionID)):
+            input_sessionID = str(input_sessionID)
+        else:
+            raise KeyError
+        
+    except KeyError as e:
+        logger.debug(f"セッションIDが見つかりません {e}")
+        
+        return Response(response=json.dumps(""), headers={"ContentType":"application/json"}, status=401)
+    
     
     # 履歴の登録
     CreateHistory(REQUEST=request, method="PUT", type="PutUserData")
@@ -154,10 +169,52 @@ def HandleUserData_PutUesrData(userID):
     
     # JSONSCEMAにあったリクエストが送られてきたため，具体的な処理に移る
     
+    # 送信されたJSONデータをパース
+    input_json = request.json
     
+    # jsonデータの中の値をそれぞれ格納
     
+    input_total_steps = int(input_json["totalSteps"])
+    input_today_steps = int(input_json["todaySteps"])
+    input_point = int(input_json["point"])
+    input_favorablerate = int(input_json["favorableRate"])
     
-    return ""
+    # DBとのセッションの確立
+    # DBセションを確立する
+    try:
+        CE = CreateEngine()
+        session = MakeSession(CE).getSession()
+    except Exception as e:
+        logger.debug(f"セッションが確立できませんでした {e}")
+        
+        return Response(response = json.dumps(""), headers={"Content-Type":"aplication/json"}, status=401)
+    
+    # まず，sessionIDの有効性を評価する
+    if(not ValidateSessionID(session, USERSession, input_sessionID, input_userID)):
+        logger.debug("sessionIDが不正です")
+        
+        return Response(response=json.dumps(""), headers={"Content-Type":"application/json"}, status=401)
+
+    
+    # 有効なので，値の変更に入る
+    # USER, USERDataをuserDataIDで結合してその要素を取り出す
+    userData = session.query(USER, USERData).join(USER, USER.userDataID == USERData.userDataID).filter(USER.userID == userID)
+    
+    # 値の変更を行う
+    # totalStepsは加算する
+    # todayStepsは更新する
+    # pointも更新する
+    # favorableRateの更新する
+    userData[0].USERData.totalSteps += input_total_steps
+    userData[0].USERData.todaySteps = input_today_steps
+    userData[0].USERData.point = input_point
+    userData[0].USERData.favorableRate = input_favorablerate
+    
+    session.flush()
+    
+    session.commit()
+
+    return Response(response=json.dumps(""), headers={"Content-Type":"application/json"}, status=200)
 
 
 @HandleUserData.route("", methods=["GET"])
