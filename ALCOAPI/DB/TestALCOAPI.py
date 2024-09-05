@@ -88,4 +88,11 @@ if(__name__ == "__main__"):
     # session.commit()
     
     # session.close()
+    
+    requests.put(
+        url=url3 % ("1242f353", "1d32e37c")
+        ,headers={"Content-Type":"application/json"},
+        data=json.dumps({"todaySteps":500, "totalSteps":600, "point":50, "favorableRate":100}),
+        )
+
         
