@@ -164,10 +164,10 @@ def ValidateSessionID(session, USERSession, sessionID, userID):
                 current_session.expiredDate = datetime.datetime.now() + datetime.timedelta(days=7)
                 session.commit()
                 
-                return True
+                return {"sessionID": sessionID, "expireDate": datetime.datetime.timestamp(current_session.expiredDate)}
     
     # セッションは有効ではなかったことを示す       
-    return False
+    return None
     
     
     
