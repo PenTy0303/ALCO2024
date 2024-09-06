@@ -1,8 +1,8 @@
-from ALCOAPI.v1_0_0.router import router
+import ALCOAPI.v2_0_0 as funcs
 from dotenv import load_dotenv
 
 
 if __name__ == "__main__":
     # envファイルの読み込み
     load_dotenv()
-    router.run()
+    funcs.router.router.run()

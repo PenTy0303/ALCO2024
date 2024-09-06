@@ -4,17 +4,14 @@ if(__name__ == "__main__"):
     import datetime
     import json
     import requests
-    from models import USER, USERData
-    from CreateEngine import CreateEngine
-    from makeSession import MakeSession
 
     users = ["inamori", "inagawa", "imoto", "imazato", "takatosi", "Xx_fps_shake_xX", "takemoto", "banndou", "uwano", "ishimizu", "mori"]
     passwords = ["sample", "sample", "sample", "sample","sample","sample", "sample", "sample", "sample", "sample"]
     userIDs = ["1242f353", "e09e6a90", "fbd9f8b6", "94e49b24", "1e50b217", "8e016722", "2ec60030", "ec02f7be", "a14451b3", "15d35444"]
 
 
-    url1 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/CreateUser"
-    url2 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/AuthUser"
+    url1 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/CreateUser"
+    url2 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/AuthUser"
     
     
     
