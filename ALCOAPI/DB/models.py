@@ -6,7 +6,12 @@ from sqlalchemy import ForeignKey
 
 # テーブルの各カラムに対するデータ型
 from sqlalchemy.schema import Column
-from sqlalchemy.types import Integer, String, BigInteger, DateTime
+from sqlalchemy.types import Integer, String, Float, BigInteger, DateTime
+
+# グローバルメソッド
+
+# 自作メソッド
+
 
 Base = declarative_base()
 
@@ -41,12 +46,20 @@ class USERData(Base):
     userDataID = Column(String(8), ForeignKey("USER.userDataID", ondelete="CASCADE", onupdate="CASCADE") , primary_key=True, nullable=False, autoincrement=False)
     totalSteps = Column(BigInteger)
     todaySteps = Column(BigInteger)
-    point = Column(BigInteger)
-    favorableRate = Column(Integer)
-    reloadedDate = Column(DateTime)
-    weekSteps = Column(String(255))
+    ltdReliefDate = Column(Float)
+    lastInterfereDate = Column(Float)
+    totalReliefTimes = Column(Integer)
+    currentSeasonReliefTimes = Column(Integer)
+    lastReliefTimesUpdate = Column(Float)
+    property = Column(Integer)
+    destructionRate = Column(Integer)
+    civilizationRate = Column(Integer)
+    currentDebuff = Column(Integer)
+    ownedItems = Column(String(2^16))
+    unlockedAchievement = Column(String(2*16))
+    lastUpdate = Column(Float)
     
-    # CURDMethods
+    # CURDMethods       
 
 # USERSessionテーブル作成
 class USERSession(Base):

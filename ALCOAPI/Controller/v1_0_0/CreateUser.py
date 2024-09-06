@@ -4,7 +4,7 @@ import json
 from jsonschema import validate, ValidationError
 from logging import getLogger
 import os
-import datetime
+import time
 
 # 自作モジュール
 from ALCOAPI.DB.CreateEngine import CreateEngine
@@ -117,10 +117,18 @@ def PostCreateUser():
         userData.userDataID = userDataID
         userData.todaySteps = 0
         userData.totalSteps = 0
-        userData.point = 0
-        userData.favorableRate = 0
-        userData.reloadedDate = datetime.datetime.now()
-        userData.weekSteps = json.dumps({"01":0, "02":0, "03":0, "04":0, "05":0, "06":0, "07":0})
+        userData.ltdReliefDate = 0
+        userData.lastInterfereDate = 0
+        userData.totalReliefTimes = 0
+        userData.currentSeasonReliefTimes = 0
+        userData.lastReliefTimesUpdate = 0
+        userData.property = 0
+        userData.destructionRate = 0
+        userData.civilizationRate = 0
+        userData.currentDebuff = 0
+        userData.ownedItems = json.dumps({})
+        userData.unlockedAchievement = json.dumps({})
+        userData.lastUpdate = time.time()
         
         # 外部キー制約があるのでuserを先にflushへステージ
         session.add(user)
