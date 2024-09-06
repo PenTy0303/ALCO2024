@@ -15,53 +15,41 @@ if(__name__ == "__main__"):
 
     url1 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/CreateUser"
     url2 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/AuthUser"
-    url3 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/HandleUserData/%s?sessionID=%s"
-    url4 = "http://127.0.0.1:5000/ALCOAPI/v1.0.0/HandleUserData?RankedItem=%s&lowest=%d"
+    
     
     
 
-    # for u,p, id in zip(users, passwords, userIDs):
-    #     payload = {"name":str(u), "pass": str(p)}
-    #     response1 = requests.post(
-    #         url1, 
-    #         headers={"Content-Type": "application/json"}, 
-    #         data=json.dumps(payload)
-    #         ).json()
+    for u,p, id in zip(users, passwords, userIDs):
+        payload = {"name":str(u), "pass": str(p)}
+        response1 = requests.post(
+            url1, 
+            headers={"Content-Type": "application/json"}, 
+            data=json.dumps(payload)
+            ).json()
         
-    #     print(response1)
-    #     if("userID" in response1.keys()):
-    #         payload = {"userID":str(response1["userID"]), "pass": p}
+        print(response1)
+        if("userID" in response1.keys()):
+            payload = {"userID":str(response1["userID"]), "pass": p}
             
             
-    #         response2 = requests.post(
-    #             url2, 
-    #             headers = {"Content-Type": "application/json"},
-    #             data=json.dumps(payload)
-    #             ).json()
+            response2 = requests.post(
+                url2, 
+                headers = {"Content-Type": "application/json"},
+                data=json.dumps(payload)
+                ).json()
             
-    #         print(response2)
-    #     else:
-    #         payload = {"userID":id, "pass": p}
-    #         response2 = requests.post(
-    #             url2, 
-    #             headers = {"Content-Type": "application/json"}, 
-    #             data=json.dumps(payload)
-    #             ).json()
+            print(response2)
+        else:
+            payload = {"userID":id, "pass": p}
+            response2 = requests.post(
+                url2, 
+                headers = {"Content-Type": "application/json"}, 
+                data=json.dumps(payload)
+                ).json()
             
-    #         print(response2)
+            print(response2)
         
-    #     response3 = requests.get(
-    #         url=  (url3 % (id, response2["sessionID"]))
-    #     ).json()
-    #     print(response3)
-        
-    
-    # response4 = requests.get(url=url4 % ("0000", 8)).json()
-    
-    # json.dump(response4, open("test.json", "w"), indent=2)
-     
-    # print(response4)
-            
+          
         
     # CE = CreateEngine()
     # session = MakeSession(CE).getSession()
@@ -88,11 +76,6 @@ if(__name__ == "__main__"):
     # session.commit()
     
     # session.close()
-    
-    requests.put(
-        url=url3 % ("1242f353", "1d32e37c")
-        ,headers={"Content-Type":"application/json"},
-        data=json.dumps({"todaySteps":500, "totalSteps":600, "point":50, "favorableRate":100}),
-        )
+
 
         
