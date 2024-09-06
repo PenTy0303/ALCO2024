@@ -6,12 +6,12 @@ from logging import getLogger
 import os
 
 # 自作モジュール
-from ALCOAPI.DB.CreateEngine import CreateEngine
-from ALCOAPI.DB.makeSession import MakeSession
-from ALCOAPI.DB.models import USER, USERSession
+from ..DB.CreateEngine import CreateEngine
+from ..DB.makeSession import MakeSession
+from ..DB.models import USER, USERSession
 
-from ALCOAPI.Controller.v1_0_0.CreateHistory import CreateHistory
-from ALCOAPI.Controller.v1_0_0.tools import ReadJson, HashText, GetSessionID, VerifyString
+from .CreateHistory import CreateHistory
+from .tools import ReadJson, HashText, GetSessionID, VerifyString
 
 
 # 機能分割用のBluePrint登録
@@ -26,7 +26,7 @@ CE = CreateEngine()
 
 # method
 
-PATH_JSONSCHEMA = "ALCOAPI/Controller/v1_0_0/schema/AuthUser.json"
+PATH_JSONSCHEMA = "ALCOAPI/" + os.environ.get("VERSION") + "/Controller/schema/AuthUser.json"
 PAPPER = os.environ["PAPPER"]
 
 # router

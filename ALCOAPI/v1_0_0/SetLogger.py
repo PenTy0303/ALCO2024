@@ -1,6 +1,6 @@
 from logging import getLogger, StreamHandler, Formatter, DEBUG
 from logging.handlers import TimedRotatingFileHandler
-
+import datetime
 # Loggerインスタンスの生成
 def SetLogger():
     logger = getLogger("MainLog")
@@ -13,7 +13,9 @@ def SetLogger():
     streamHandler.setLevel(DEBUG)
     streamHandler.setFormatter(handler_formatter)
     
-    fileHandler = TimedRotatingFileHandler("ALCOAPI/log/ALCOAPI.log", when="midnight", interval=1, backupCount=7)
+    fn = str(datetime.datetime.now()).split(' ')[0] + "-" +  str(datetime.datetime.now()).split(' ')[1].replace(".", "-").replace(":", "-")
+    
+    fileHandler = TimedRotatingFileHandler(f"ALCOAPI/log/{str(fn)}.log", when="midnight", interval=1, backupCount=7)
     fileHandler.setLevel(DEBUG)
     fileHandler.setFormatter(handler_formatter)
     

@@ -5,9 +5,9 @@ import datetime
 from logging import getLogger
 
 # 自作モジュール
-from ALCOAPI.DB.CreateEngine import CreateEngine
-from ALCOAPI.DB.makeSession import MakeSession
-from ALCOAPI.DB.models import CLIENTHistory
+from ..DB.CreateEngine import CreateEngine
+from ..DB.makeSession import MakeSession
+from ..DB.models import CLIENTHistory
 
 # logger作成
 logger = getLogger("MainLog").getChild("CreateHistory")

@@ -1,6 +1,6 @@
-from ALCOAPI.router import router
+from ALCOAPI.v1_0_0.router import router
 from dotenv import load_dotenv
-import os
+
 
 if __name__ == "__main__":
     # envファイルの読み込み

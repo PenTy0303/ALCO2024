@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+import os
 
 # sqlalchemy.create_engineを使ってデータベース作成用接続用のエンジンを返却するクラス．
 class CreateEngine():
@@ -7,7 +8,7 @@ class CreateEngine():
     def __init__(self):
         # dialect, userName, passWord, host, database = "mysql", "alco", "alco2024", "localhost", "alcodb"
         # self._engine = create_engine(f"{dialect}://{userName}:{passWord}@{host}/{database}", echo=True)
-        dialect, fn = "sqlite", "ALCOAPI/DB/alcodb.db"
+        dialect, fn = "sqlite", "ALCOAPI/" + os.environ.get("VERSION") + "/DB/alcodb.db"
         self._engine = create_engine(f"{dialect}:///{fn}")
     
     # getter
