@@ -16,7 +16,7 @@ router.config.from_object('ALCOAPI.'+os.environ.get("VERSION")+'.config')
 # BluePrintへ登録
 router.register_blueprint(ctl.AuthUser.AuthUser) 
 router.register_blueprint(ctl.CreateUser.CreateUser)
-
+router.register_blueprint(ctl.UseSession.UseSession)
 
 # method
 
