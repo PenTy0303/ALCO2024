@@ -12,39 +12,60 @@ if(__name__ == "__main__"):
 
     url1 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/CreateUser"
     url2 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/AuthUser"
+    url3 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/UseSession/%s?sessionID=%s"
     
+    response = requests.post(
+        url = url2,
+        headers = {"Content-Type":"application/json"},
+        data = json.dumps({"userID":"97e185a1", "pass":"sample"})
+    ).json()
+    
+    print(json.dumps(response, indent=2))
+    
+    
+    response = requests.get(
+        url = url3 % ("97e185a1", "aa65486e")
+    ).json()
+    
+    print(json.dumps(response, indent=2))
+    
+    # response = requests.delete(
+    #     url = url3 % ("97e185a1", "92180ada")
+    # ).json()
+    
+    # print(json.dumps(response, indent=2))
     
     
 
-    for u,p, id in zip(users, passwords, userIDs):
-        payload = {"name":str(u), "pass": str(p)}
-        response1 = requests.post(
-            url1, 
-            headers={"Content-Type": "application/json"}, 
-            data=json.dumps(payload)
-            ).json()
+    # for u,p, id in zip(users, passwords, userIDs):
+    #     payload = {"name":str(u), "pass": str(p)}
+    #     response1 = requests.post(
+    #         url1, 
+    #         headers={"Content-Type": "application/json"}, 
+    #         data=json.dumps(payload)
+    #         ).json()
         
-        print(response1)
-        if("userID" in response1.keys()):
-            payload = {"userID":str(response1["userID"]), "pass": p}
+    #     print(response1)
+    #     if("userID" in response1.keys()):
+    #         payload = {"userID":str(response1["userID"]), "pass": p}
             
             
-            response2 = requests.post(
-                url2, 
-                headers = {"Content-Type": "application/json"},
-                data=json.dumps(payload)
-                ).json()
+    #         response2 = requests.post(
+    #             url2, 
+    #             headers = {"Content-Type": "application/json"},
+    #             data=json.dumps(payload)
+    #             ).json()
             
-            print(response2)
-        else:
-            payload = {"userID":id, "pass": p}
-            response2 = requests.post(
-                url2, 
-                headers = {"Content-Type": "application/json"}, 
-                data=json.dumps(payload)
-                ).json()
+    #         print(response2)
+    #     else:
+    #         payload = {"userID":id, "pass": p}
+    #         response2 = requests.post(
+    #             url2, 
+    #             headers = {"Content-Type": "application/json"}, 
+    #             data=json.dumps(payload)
+    #             ).json()
             
-            print(response2)
+    #         print(response2)
         
           
         
