@@ -58,8 +58,4 @@ def CreateHistory(REQUEST, method, type, addition=""):
     
     session.close()
     
-    return True
-        
-    
-
-    
+    return True    
