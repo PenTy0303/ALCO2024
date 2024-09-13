@@ -69,7 +69,7 @@ def get_UseSession(input_userID):
     
     if(result):
         # セッションIDが正常です
-        print(Status.get_200(acceptedTime=acceptedTime, body=result))
+        # print(Status.get_200(acceptedTime=acceptedTime, body=result))
         return Response(response=json.dumps(Status.get_200(acceptedTime=acceptedTime, body=result)), status=200)
     
     else:
