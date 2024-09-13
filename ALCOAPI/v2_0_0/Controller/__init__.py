@@ -1,3 +1,3 @@
-# Controllerディレクトリ自体をモジュールとしてよ見込むと次のものがパッケージとして読み込まれます
+# Controllerディレクトリ自体をモジュールとして読み込むと次のものがパッケージとして読み込まれます
 
-from . import AuthUser, CreateUser, UseSession
+from . import AuthUser, CreateUser, UseSession, InterfereTime
