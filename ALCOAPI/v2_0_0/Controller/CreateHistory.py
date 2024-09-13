@@ -30,14 +30,21 @@ def CreateHistory(REQUEST, method, type, addition=""):
         # POST
         # get_json()はBodyのデータをJSONへパースできないとエラーが発生するため，get_data()二変更し，ただのテキストデータとして受け取ることにする．
         payload = REQUEST.get_data()
+        
     elif(method == "GET"):
         # GET
         tmp = REQUEST.args.to_dict()
         tmp["url"] = addition
         payload = json.dumps(tmp)
+        
     elif(method == "PUT"):
         # PUT
         payload = REQUEST.get_data()
+    
+    elif(method == "DELETE"):
+        # DELETE
+        payload = json.dumps(REQUEST.args.to_dict())
+        
         
     # データの登録
     CH.date = datetime.datetime.now()
