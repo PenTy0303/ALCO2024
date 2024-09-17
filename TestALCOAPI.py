@@ -4,6 +4,7 @@ if(__name__ == "__main__"):
     import datetime
     import json
     import requests
+    import time
 
     users = ["inamori", "inagawa", "imoto", "imazato", "takatosi", "Xx_fps_shake_xX", "takemoto", "banndou", "uwano", "ishimizu", "mori"]
     passwords = ["sample", "sample", "sample", "sample","sample","sample", "sample", "sample", "sample", "sample"]
@@ -14,6 +15,7 @@ if(__name__ == "__main__"):
     url2 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/AuthUser"
     url3 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/UseSession/%s?sessionID=%s"
     url4 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/InterfereTime/%s?sessionID=%s"
+    url5 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/IsRelief/%s?sessionID=%s"
     
     
     response = requests.post(
@@ -56,14 +58,16 @@ if(__name__ == "__main__"):
     ).json()
     
     print(json.dumps(response, indent=2))
+
+
+    response = requests.get(
+        url = url5 % ("97e185a1", "aa65486e")
+    ).json()
     
-    # response = requests.delete(
-    #     url = url3 % ("97e185a1", "92180ada")
-    # ).json()
-    
-    # print(json.dumps(response, indent=2))
+    print("url5\n" + json.dumps(response, indent=2))    
     
     
+    print(time.time() + 86400)
 
     # for u,p, id in zip(users, passwords, userIDs):
     #     payload = {"name":str(u), "pass": str(p)}

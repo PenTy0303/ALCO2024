@@ -152,9 +152,3 @@ def PostCreateUser():
         
         response["message"] = "Duplicate Name"
         return Response(response=json.dumps(response), status=401)
-    
-    
-    
-
-    
-    

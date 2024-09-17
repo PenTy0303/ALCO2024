@@ -22,7 +22,7 @@ CE = CreateEngine.CreateEngine()
 VERSION = os.environ.get("VERSION")
 
 # loggerの取得
-logger = getLogger("MainLog").getChild("UseSession")
+logger = getLogger("MainLog").getChild("InterfereTime")
 
 # 正規表現の登録
 pattern_userID = r'[a-z0-9]'

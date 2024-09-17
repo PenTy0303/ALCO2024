@@ -135,7 +135,3 @@ def delete_UseSession(input_userID):
     # すべての動作が正常に終了した
     
     return Response(status=200, response=json.dumps(Status.get_200(acceptedTime=acceptedTime)), headers={"Content-Type":"application/json"})
-        
-    
-        
-    

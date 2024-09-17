@@ -168,6 +168,3 @@ def ValidateSessionID(session, USERSession, sessionID, userID):
     
     # セッションは有効ではなかったことを示す       
     return None
-    
-    
-    

@@ -30,6 +30,3 @@ class Responses():
         self._Status_401["body"] = {"message": message}
         
         return self._Status_404
-        
-
- 

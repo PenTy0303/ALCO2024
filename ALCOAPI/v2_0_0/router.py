@@ -18,6 +18,7 @@ router.register_blueprint(ctl.AuthUser.AuthUser)
 router.register_blueprint(ctl.CreateUser.CreateUser)
 router.register_blueprint(ctl.UseSession.UseSession)
 router.register_blueprint(ctl.InterfereTime.InterfereTime)
+router.register_blueprint(ctl.ReliefTime.ReliefTime)
 
 # method
 
