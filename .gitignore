@@ -3,3 +3,4 @@ __pycache__
 venv/
 **/log
 **/v1_0_0
+ALCOAPI/v2_0_0/DB/alcodb.db
