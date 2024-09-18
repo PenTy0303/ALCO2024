@@ -1,0 +1,28 @@
+{
+   "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title" : "CreateUserRequestBodySchema",
+    "description" : "RequestBodySchema for CreateUser/v2.0.0",
+
+    "type" : "object",
+    "required": [
+        "unlockAchievement"
+    ],
+    "additionalProperties": false,
+    "properties" : {
+        "unlockAchievement": {
+            "type":"array",
+            "items": {
+                "type":"object",
+                "properties" : {
+                    "id":{
+                        "type":"integer"
+                    },
+                    "name":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+
+    } 
+}
