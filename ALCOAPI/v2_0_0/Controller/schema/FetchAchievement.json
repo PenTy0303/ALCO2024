@@ -5,11 +5,11 @@
 
     "type" : "object",
     "required": [
-        "unlockAchievement"
+        "unlockedAchievement"
     ],
     "additionalProperties": false,
     "properties" : {
-        "unlockAchievement": {
+        "unlockedAchievement": {
             "type":"array",
             "items": {
                 "type":"object",

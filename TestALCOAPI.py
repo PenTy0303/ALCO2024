@@ -18,6 +18,7 @@ if(__name__ == "__main__"):
     url5 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/IsRelief/%s?sessionID=%s"
     url6 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchItem/%s?sessionID=%s"
     url7 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchItem/%s?sessionID=%s"
+    url8 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchAchievement/%s?sessionID=%s"
     
     
     
@@ -83,6 +84,14 @@ if(__name__ == "__main__"):
     response = requests.put(
         url = url7 % ("97e185a1", "aa65486e"),
         data = json.dumps({"itemID":2, "itemCount":10, "destructionRate":10, "civilizationRate":10, "debuff":10}),
+        headers = {"Content-Type":"application/json"},
+    ).json()
+    
+    print(json.dumps(response, indent=2)) 
+    
+    response = requests.put(
+        url = url8 % ("97e185a1", "aa65486e"),
+        data = json.dumps({"unlockedAchievement":[{"id":0, "name":"地球救済マスター"}]}, ensure_ascii=False),
         headers = {"Content-Type":"application/json"},
     ).json()
     
