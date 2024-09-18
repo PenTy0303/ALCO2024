@@ -16,6 +16,9 @@ if(__name__ == "__main__"):
     url3 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/UseSession/%s?sessionID=%s"
     url4 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/InterfereTime/%s?sessionID=%s"
     url5 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/IsRelief/%s?sessionID=%s"
+    url6 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchItem/%s?sessionID=%s"
+    url7 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchItem/%s?sessionID=%s"
+    
     
     
     response = requests.post(
@@ -54,7 +57,7 @@ if(__name__ == "__main__"):
     print(json.dumps(response, indent=2))
     
     response = requests.get(
-        url = url4 % ("97e185a1", "aa65486e")
+        url = url4 % ("97e185a1", "aa65486e"),
     ).json()
     
     print(json.dumps(response, indent=2))
@@ -64,10 +67,26 @@ if(__name__ == "__main__"):
         url = url5 % ("97e185a1", "aa65486e")
     ).json()
     
-    print("url5\n" + json.dumps(response, indent=2))    
+    print(json.dumps(response, indent=2))    
     
     
     print(time.time() + 86400)
+    
+    response = requests.post(
+        url = url6 % ("97e185a1", "aa65486e"),
+        data = json.dumps({"itemID":2, "itemCount":10, "property":900}),
+        headers = {"Content-Type":"application/json"},
+    ).json()
+    
+    print(json.dumps(response, indent=2)) 
+    
+    response = requests.put(
+        url = url7 % ("97e185a1", "aa65486e"),
+        data = json.dumps({"itemID":2, "itemCount":10, "destructionRate":10, "civilizationRate":10, "debuff":10}),
+        headers = {"Content-Type":"application/json"},
+    ).json()
+    
+    print(json.dumps(response, indent=2)) 
 
     # for u,p, id in zip(users, passwords, userIDs):
     #     payload = {"name":str(u), "pass": str(p)}

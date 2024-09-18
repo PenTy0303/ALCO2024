@@ -1,7 +1,7 @@
 {
     "$schema" : "http://json-schema.org/draft-07/schema#",
     "title" : "CreateUserRequestBodySchema",
-    "description" : "RequestBodySchema for CreateUser/v1.0.0",
+    "description" : "RequestBodySchema for CreateUser/v2.0.0",
 
     "type" : "object",
     "required": [
