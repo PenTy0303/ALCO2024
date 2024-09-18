@@ -1,0 +1,33 @@
+{
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title" : "AuthUserRequestBodySchema",
+    "description" : "RequestBodySchema for AuthUser/v2.0.0",
+
+    "type" : "object",
+    "required": [
+        "itemID", "itemCount", "destructionRate", "civilizationRate", "debuff"
+    ],
+    "additionalProperties": false,
+    "properties" : {
+        "itemID":{
+            "type":"integer",
+            "minimum":0
+        },
+        "itemCount":{
+            "type":"integer",
+            "minimum":0
+        },
+        "destructionRate":{
+            "type":"integer",
+            "minimum":0
+        },
+        "civilizationRate":{
+            "type":"integer",
+            "minimum":0
+        },
+        "debuff":{
+            "type":"integer",
+            "minimum":0
+        }
+    }
+}

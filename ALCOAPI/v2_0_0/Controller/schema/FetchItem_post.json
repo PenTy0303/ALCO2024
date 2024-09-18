@@ -1,0 +1,25 @@
+{
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title" : "AuthUserRequestBodySchema",
+    "description" : "RequestBodySchema for AuthUser/v2.0.0",
+
+    "type" : "object",
+    "required": [
+        "itemID", "itemCount", "property"
+    ],
+    "additionalProperties": false,
+    "properties" : {
+        "userID": {
+            "type":"integer",
+            "minimum":0
+        },
+        "itemCount": {
+            "type":"integer",
+            "minimum":0
+        },
+        "property": {
+            "type":"integer",
+            "minimum":0
+        }         
+    }
+}
