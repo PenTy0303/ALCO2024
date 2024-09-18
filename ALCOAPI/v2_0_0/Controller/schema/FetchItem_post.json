@@ -9,7 +9,7 @@
     ],
     "additionalProperties": false,
     "properties" : {
-        "userID": {
+        "itemID": {
             "type":"integer",
             "minimum":0
         },
