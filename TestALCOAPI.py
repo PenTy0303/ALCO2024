@@ -102,7 +102,16 @@ if(__name__ == "__main__"):
         url = url9 % ("97e185a1", "aa65486e")
     ).json()
     
-    print(json.dumps(response, indent=2))    
+    print(json.dumps(response, indent=2))
+    
+    response = requests.put(
+        url = url9 % ("97e185a1", "aa65486e"),
+        data = json.dumps({"todaySteps":100, "totalSteps":1100, "property":900}, ensure_ascii=False),
+        headers = {"Content-Type":"application/json"},
+    ).json()
+    
+    print(json.dumps(response, indent=2))
+        
     # for u,p, id in zip(users, passwords, userIDs):
     #     payload = {"name":str(u), "pass": str(p)}
     #     response1 = requests.post(
