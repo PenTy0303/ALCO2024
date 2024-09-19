@@ -20,6 +20,7 @@ if(__name__ == "__main__"):
     url7 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchItem/%s?sessionID=%s"
     url8 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchAchievement/%s?sessionID=%s"
     url9 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchUserData/%s?sessionID=%s"
+    url10 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/GetUserRanking/%s?sessionID=%s&num=%s"
     
     
     
@@ -108,6 +109,12 @@ if(__name__ == "__main__"):
         url = url9 % ("97e185a1", "aa65486e"),
         data = json.dumps({"todaySteps":100, "totalSteps":1100, "property":900}, ensure_ascii=False),
         headers = {"Content-Type":"application/json"},
+    ).json()
+    
+    print(json.dumps(response, indent=2))
+    
+    response = requests.get(
+        url = url10 % ("5196c1c8", "381bb412", "4")
     ).json()
     
     print(json.dumps(response, indent=2))
