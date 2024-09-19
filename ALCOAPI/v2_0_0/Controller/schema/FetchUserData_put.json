@@ -1,0 +1,25 @@
+{
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title" : "AuthUserRequestBodySchema",
+    "description" : "RequestBodySchema for AuthUser/v2.0.0",
+
+    "type" : "object",
+    "required": [
+        "todaySteps", "totalSteps", "property"
+    ],
+    "additionalProperties": false,
+    "properties" : {
+        "todaySteps":{
+            "type":"integer",
+            "minimum":0
+        },
+        "totalSteps":{
+            "type":"integer",
+            "minimum":0
+        },
+        "property":{
+            "type":"integer",
+            "minimum":0
+        }
+    }
+}
