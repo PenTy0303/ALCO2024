@@ -14,7 +14,7 @@ from .tools import ValidateSessionID, ReadJson
 # initialize
 
 ## register blueprint
-GetUserRanking = Blueprint("GetUserRanking", __name__, url_prefix="/ALCOAPI/v2.0.0/GetUserRanking")
+GetUserRanking = Blueprint("GetUserRanking", __name__, url_prefix="/GetUserRanking")
 
 ## get env
 VERSION = "v2_0_0"

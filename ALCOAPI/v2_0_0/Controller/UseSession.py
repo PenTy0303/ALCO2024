@@ -13,7 +13,7 @@ from .Responses import Responses
 from .tools import ValidateSessionID
 
 # BluePrintの登録
-UseSession = Blueprint("UseSession", __name__,  url_prefix="/ALCOAPI/v2.0.0/UseSession")
+UseSession = Blueprint("UseSession", __name__,  url_prefix=" /UseSession")
 
 # データベースのエンジン作成
 CE = CreateEngine.CreateEngine()

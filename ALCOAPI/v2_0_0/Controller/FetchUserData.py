@@ -13,7 +13,7 @@ from .tools import ValidateSessionID, ReadJson
 # initialize
 
 ## register blueprint
-FetchUserData = Blueprint("FetchUserData", __name__, url_prefix="/ALCOAPI/v2.0.0/FetchUserData")
+FetchUserData = Blueprint("FetchUserData", __name__, url_prefix="/FetchUserData")
 
 ## get env
 VERSION = "v2_0_0"

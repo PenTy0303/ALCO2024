@@ -13,7 +13,7 @@ from .tools import ValidateSessionID, ReadJson, ResetEarthStatus
 # initialize
 
 ## register blueprint
-FetchEarthRelief = Blueprint("FetchEarthRelief", __name__, url_prefix="/ALCOAPI/v2.0.0/FetchEarthRelief")
+FetchEarthRelief = Blueprint("FetchEarthRelief", __name__, url_prefix="/FetchEarthRelief")
 
 ## get env
 VERSION = "v2_0_0"

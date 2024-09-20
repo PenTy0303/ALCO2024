@@ -16,7 +16,7 @@ from .tools import ReadJson, HashText ,CreateUserID,ResetEarthStatus
 
 
 # Blueprint登録
-CreateUser = Blueprint("CreateUser", __name__, url_prefix="/ALCOAPI/v2.0.0/CreateUser")
+CreateUser = Blueprint("CreateUser", __name__, url_prefix="/CreateUser")
 
 # loggerの取得
 logger = getLogger("MainLog").getChild("CreateUser")

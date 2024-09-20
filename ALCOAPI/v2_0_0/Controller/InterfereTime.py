@@ -13,7 +13,7 @@ from .Responses import Responses
 from .tools import ValidateSessionID
 
 # BluePrintの登録
-InterfereTime = Blueprint("InterfereTime", __name__,  url_prefix="/ALCOAPI/v2.0.0/InterfereTime")
+InterfereTime = Blueprint("InterfereTime", __name__,  url_prefix="/InterfereTime")
 
 # データベースのエンジン作成
 CE = CreateEngine.CreateEngine()

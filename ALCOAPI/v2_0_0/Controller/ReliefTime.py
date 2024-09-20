@@ -12,7 +12,7 @@ from .Responses import Responses
 from .tools import ValidateSessionID
 
 # BluePrintの登録
-ReliefTime = Blueprint("ReliefTime", __name__,  url_prefix="/ALCOAPI/v2.0.0/IsRelief")
+ReliefTime = Blueprint("ReliefTime", __name__,  url_prefix="/IsRelief")
 
 # データベースのエンジン作成
 CE = CreateEngine.CreateEngine()

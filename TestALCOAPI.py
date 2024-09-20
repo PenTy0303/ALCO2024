@@ -11,16 +11,16 @@ if(__name__ == "__main__"):
     userIDs = ["1242f353", "e09e6a90", "fbd9f8b6", "94e49b24", "1e50b217", "8e016722", "2ec60030", "ec02f7be", "a14451b3", "15d35444"]
 
 
-    url1 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/CreateUser"
-    url2 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/AuthUser"
-    url3 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/UseSession/%s?sessionID=%s"
-    url4 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/InterfereTime/%s?sessionID=%s"
-    url5 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/IsRelief/%s?sessionID=%s"
-    url6 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchItem/%s?sessionID=%s"
-    url7 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchItem/%s?sessionID=%s"
-    url8 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchAchievement/%s?sessionID=%s"
-    url9 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/FetchUserData/%s?sessionID=%s"
-    url10 = "http://127.0.0.1:5000/ALCOAPI/v2.0.0/GetUserRanking/%s?sessionID=%s&num=%s"
+    url1 = "http://127.0.0.1:5000/CreateUser"
+    url2 = "http://127.0.0.1:5000/AuthUser"
+    url3 = "http://127.0.0.1:5000/UseSession/%s?sessionID=%s"
+    url4 = "http://127.0.0.1:5000/InterfereTime/%s?sessionID=%s"
+    url5 = "http://127.0.0.1:5000/IsRelief/%s?sessionID=%s"
+    url6 = "http://127.0.0.1:5000/FetchItem/%s?sessionID=%s"
+    url7 = "http://127.0.0.1:5000/FetchItem/%s?sessionID=%s"
+    url8 = "http://127.0.0.1:5000/FetchAchievement/%s?sessionID=%s"
+    url9 = "http://127.0.0.1:5000/FetchUserData/%s?sessionID=%s"
+    url10 = "http://127.0.0.1:5000/GetUserRanking/%s?sessionID=%s&num=%s"
     
     
     

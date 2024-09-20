@@ -16,7 +16,7 @@ from .tools import ReadJson, HashText, GetSessionID, VerifyString
 
 # 機能分割用のBluePrint登録
 # UrlPrefixは仕様書に基づく
-AuthUser = Blueprint("AuthUser", __name__, url_prefix = "/ALCOAPI/v2.0.0/AuthUser")
+AuthUser = Blueprint("AuthUser", __name__, url_prefix = "/AuthUser")
 
 # loggingに登録してあるALCOAPI用のハンドラを取得
 logger = getLogger("MainLog").getChild("AuthUser")

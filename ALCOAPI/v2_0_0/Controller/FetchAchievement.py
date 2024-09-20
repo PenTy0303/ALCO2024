@@ -18,7 +18,7 @@ from .tools import ReadJson, ValidateSessionID
 
 # initialize
 ## BluePrintの取得
-FetchAchievement = Blueprint("FetchAchievement", __name__, url_prefix="/ALCOAPI/v2.0.0/FetchAchievement")
+FetchAchievement = Blueprint("FetchAchievement", __name__, url_prefix="/FetchAchievement")
 
 ## データベースエンジンクラスの作成
 CE = CreateEngine.CreateEngine()
