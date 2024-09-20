@@ -26,8 +26,8 @@ logger = getLogger("MainLog").getChild("CreateUser")
 CE = CreateEngine()
 
 # グローバル変数の宣言
-PATH_JSONSCHEMA = "ALCOAPI/" + os.environ.get("VERSION") + "/Controller/schema/CreateUser.json"
-PAPPER = os.environ["PAPPER"]
+PATH_JSONSCHEMA = "ALCOAPI/" + "v2_0_0" + "/Controller/schema/CreateUser.json"
+PAPPER = "TBLJNPUPUFUTVEBF"
 
 @CreateUser.route("", methods=["POST"])
 def PostCreateUser():

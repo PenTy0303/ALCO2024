@@ -26,8 +26,8 @@ CE = CreateEngine()
 
 # method
 
-PATH_JSONSCHEMA = "ALCOAPI/" + os.environ.get("VERSION") + "/Controller/schema/AuthUser.json"
-PAPPER = os.environ["PAPPER"]
+PATH_JSONSCHEMA = "ALCOAPI/" + "v2_0_0" + "/Controller/schema/AuthUser.json"
+PAPPER = "TBLJNPUPUFUTVEBF"
 
 # router
 @AuthUser.route("", methods=['POST'])

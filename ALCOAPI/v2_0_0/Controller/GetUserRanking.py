@@ -17,7 +17,7 @@ from .tools import ValidateSessionID, ReadJson
 GetUserRanking = Blueprint("GetUserRanking", __name__, url_prefix="/ALCOAPI/v2.0.0/GetUserRanking")
 
 ## get env
-VERSION = os.environ.get("VERSION")
+VERSION = "v2_0_0"
 MAX_INPUT_NUM = 10 # ランキング取得数の上限
 
 ## create db engine

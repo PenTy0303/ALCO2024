@@ -16,7 +16,7 @@ from .tools import ValidateSessionID, ReadJson, ResetEarthStatus
 FetchEarthRelief = Blueprint("FetchEarthRelief", __name__, url_prefix="/ALCOAPI/v2.0.0/FetchEarthRelief")
 
 ## get env
-VERSION = os.environ.get("VERSION")
+VERSION = "v2_0_0"
 
 ## create db engine
 CE = CreateEngine.CreateEngine()

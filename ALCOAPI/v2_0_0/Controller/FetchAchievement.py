@@ -27,7 +27,7 @@ CE = CreateEngine.CreateEngine()
 logger = getLogger("MainLog").getChild("FetchAchievement")
 
 ## 環境変数の取得
-VERSION = os.environ.get("VERSION")
+VERSION = "v2_0_0"
 
 ## 正規表現の設定
 pattern_userID = r'[a-e0-9]'

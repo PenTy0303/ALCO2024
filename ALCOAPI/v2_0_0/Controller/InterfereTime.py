@@ -19,7 +19,7 @@ InterfereTime = Blueprint("InterfereTime", __name__,  url_prefix="/ALCOAPI/v2.0.
 CE = CreateEngine.CreateEngine()
 
 # 環境変数の登録
-VERSION = os.environ.get("VERSION")
+VERSION = "v2_0_0"
 
 # loggerの取得
 logger = getLogger("MainLog").getChild("InterfereTime")

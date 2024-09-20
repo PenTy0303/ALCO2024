@@ -118,6 +118,12 @@ if(__name__ == "__main__"):
     ).json()
     
     print(json.dumps(response, indent=2))
+    
+    resposne = requests.get(
+        url = "http://alco2024.sakura.ne.jp/flask-cgi-test/hello/api/penguin"
+    ).json()
+    
+    print(json.dumps(response, indent=2))
         
     # for u,p, id in zip(users, passwords, userIDs):
     #     payload = {"name":str(u), "pass": str(p)}

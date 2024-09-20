@@ -11,7 +11,7 @@ from . import Controller as ctl
 from .SetLogger import SetLogger
 
 router = Flask(__name__)
-router.config.from_object('ALCOAPI.'+os.environ.get("VERSION")+'.config')
+router.config.from_object('ALCOAPI.'+"v2_0_0"+'.config')
 
 # BluePrintへ登録
 router.register_blueprint(ctl.AuthUser.AuthUser) 

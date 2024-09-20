@@ -16,7 +16,7 @@ from .tools import ValidateSessionID, ReadJson
 FetchUserData = Blueprint("FetchUserData", __name__, url_prefix="/ALCOAPI/v2.0.0/FetchUserData")
 
 ## get env
-VERSION = os.environ.get("VERSION")
+VERSION = "v2_0_0"
 
 ## create db engine
 CE = CreateEngine.CreateEngine()
