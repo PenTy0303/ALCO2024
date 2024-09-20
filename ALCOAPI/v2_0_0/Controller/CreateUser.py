@@ -12,7 +12,7 @@ from ..DB.makeSession import MakeSession
 from ..DB.models import USER, USERData, USERSession
 
 from .CreateHistory import CreateHistory
-from .tools import ReadJson, HashText ,CreateUserID
+from .tools import ReadJson, HashText ,CreateUserID,ResetEarthStatus
 
 
 # Blueprint登録
@@ -82,6 +82,7 @@ def PostCreateUser():
         session = MakeSession(CE).getSession()
     except Exception as e:
         logger.debug(f"セッション作成エラーです {e}")
+        return Response(response=json.dumps(response), status=401)
         
     # プロパティの取得
     content = request.json
@@ -137,6 +138,14 @@ def PostCreateUser():
         
         session.commit()
         
+        try:
+            ResetEarthStatus(session=session, USERData=USERData, userID=userID)
+        except Exception as e:
+            logger.debug(f"初期化処理中にエラーが発生しました : {e}")
+            session.rollback()
+            session.close()
+            return Response(response=json.dumps(response), status=401)
+            
         session.close()
         
         # レスポンス内容を登録する
@@ -144,8 +153,7 @@ def PostCreateUser():
         response["userID"] = userID
         
         return Response(response=json.dumps(response), status=200)
-        
-        
+
         
     else:
         logger.debug(f"nameが重複しています {input_name}")
