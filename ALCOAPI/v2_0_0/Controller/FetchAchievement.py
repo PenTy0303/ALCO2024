@@ -237,6 +237,3 @@ def put_fetchAchievement(input_userID):
             status=200, 
             headers={"Content-Type":"application/json"}
             )
-    
-    
-    return

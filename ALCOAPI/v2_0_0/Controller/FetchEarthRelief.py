@@ -8,7 +8,7 @@ import time, json, re, os
 from ..DB import CreateEngine,  makeSession, models
 from .CreateHistory import CreateHistory as CH
 from .Responses import Responses
-from .tools import ValidateSessionID, ReadJson
+from .tools import ValidateSessionID, ReadJson, ResetEarthStatus
 
 # initialize
 
@@ -153,7 +153,7 @@ def post_FetchEarthRelief(input_userID):
                     status=401, 
                     headers={"Content-Type":"application/json"}
                     )
-        
+        7777
     except Exception as e:
         logger.debug("バリデーションの過程で異常終了しました : {e}")
         return Response(
@@ -165,9 +165,69 @@ def post_FetchEarthRelief(input_userID):
     # 入力データのバリデーション終了
     
     # 入力データの代入
-    isRelief : int = post_data["isRelief"]
+    isRelief : bool = post_data["isRelief"]
     input_unlockAchievement : list[dict]= post_data["unlockedAchievement"]
     
+    length = len(input_unlockAchievement)
     
+    ## データベースに接続する
+    try:
+        session = makeSession.MakeSession(CE=CE).getSession()
+    except Exception as e:
+        logger.debug(f"データベースへの接続に失敗しました : {e}")
+        return Response(
+            response=json.dumps(Status.get_401(acceptedTime=acceptedTime)), 
+            status=401, 
+            headers={"Content-Type":"application/json"}
+            )
+        
+    ## 条件分岐で処理内容を切り替え
     
-    return ""
+    try:
+        user_data : list[models.USERData] = session\
+            .query(models.USER, models.USERData)\
+            .join(models.USERData, models.USER.userDataID == models.USERData.userDataID)\
+            .filter(models.USER.userID == input_userID)\
+            .first()
+            
+        ### 地球救済処理
+        if(isRelief):
+            ### 地球が救済できていた際の処理
+            ### 救済回数を増やす
+            user_data[1].currentSeasonReliefTimes = user_data[1].currentSeasonReliefTimes + 1
+            
+        ### 共通処理
+        ResetEarthStatus(session=session, USERData=models.USERData, userID=input_userID)
+        
+        
+        unlockedAchievements : dict = json.loads(user_data[1].unlockedAchievement)
+
+        ## これまでに解除されたアチーブメント以外であれば解除しない
+        for idx in range(length):
+            if(str(input_unlockAchievement[idx]["id"]) in unlockedAchievements.keys()):
+                unlockedAchievements[str(input_unlockAchievement[idx]["id"])] = {"status":1, "name":input_unlockAchievement[idx]["name"]}
+                
+        user_data[1].unlockedAchievement = json.dumps(unlockedAchievements, ensure_ascii=False)
+        
+        session.commit()
+
+        session.close()
+            
+            
+    except Exception as e:
+        
+        session.rollback()
+        session.close()
+        
+        logger.debug(f"データベース接続中にエラーが発生しました : {e}")
+        return Response(
+            response=json.dumps(Status.get_401(acceptedTime=acceptedTime)), 
+            status=401, 
+            headers={"Content-Type":"application/json"}
+            )
+    
+    return Response(
+                response=json.dumps(Status.get_200(acceptedTime=acceptedTime)), 
+                status=200, 
+                headers={"Content-Type":"application/json"}
+                )
