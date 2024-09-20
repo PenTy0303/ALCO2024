@@ -4,6 +4,9 @@ import hashlib
 import random
 import string
 import datetime
+from sqlalchemy.orm import sessionmaker
+from ..DB import models
+import time
 
 
 # グローバル変数
@@ -168,3 +171,44 @@ def ValidateSessionID(session, USERSession, sessionID, userID):
     
     # セッションは有効ではなかったことを示す       
     return None
+
+
+# 地球の状態を初期状態に戻す
+# どんな数値にするかはここで管理する
+def ResetEarthStatus(session : sessionmaker , USERData : models.USERData , userID : str):
+    
+    class DefaultStatus():
+        DESTRUCTION_RATE : int = 75
+        CIVILIZATION_RATE : int = 25
+        DEBUFF : int = 0
+        
+    DS = DefaultStatus()
+    try:
+        user_data : list[models.USERData] = session\
+                .query(models.USER, models.USERData)\
+                .join(models.USERData, models.USER.userDataID == models.USERData.userDataID)\
+                .filter(models.USER.userID == userID)\
+                .first()
+        
+        ## 初期値のセット
+                
+        user_data[1].destructionRate = DS.DESTRUCTION_RATE
+        user_data[1].civilizationRate = DS.CIVILIZATION_RATE
+        user_data[1].currentDebuff = DS.DEBUFF
+        user_data[1].currentSeasonReliefTimes = 0
+        user_data[1].lastReliefTimesUpdate = time.time()
+        
+        ## 救済期限の変更
+        dt = datetime.datetime.now()
+        ltddt = datetime.datetime(year=dt.year, month=dt.month, day=dt.day+7+(7-dt.weekday()), hour=0, minute=0, second=0, microsecond=0)    
+        
+        user_data[1].ltdReliefDate = int(ltddt.timestamp())
+
+        session.commit()
+        
+    except Exception as e:
+        
+        raise Exception
+        
+        
+        

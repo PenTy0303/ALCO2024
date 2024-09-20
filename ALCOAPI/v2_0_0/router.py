@@ -21,6 +21,10 @@ router.register_blueprint(ctl.InterfereTime.InterfereTime)
 router.register_blueprint(ctl.ReliefTime.ReliefTime)
 router.register_blueprint(ctl.FetchItem.FetchItem)
 router.register_blueprint(ctl.FetchAchievement.FetchAchievement)
+router.register_blueprint(ctl.FetchUserData.FetchUserData)
+router.register_blueprint(ctl.GetUserRanking.GetUserRanking)
+router.register_blueprint(ctl.FetchEarthRelief.FetchEarthRelief)
+
 
 # method
 
