@@ -133,10 +133,9 @@ def PostCreateUser():
         
         # 外部キー制約があるのでuserを先にflushへステージ
         session.add(user)
-        session.flush()
         session.add(userData)
         
-        session.commit()
+        session.commit() 
         
         try:
             ResetEarthStatus(session=session, USERData=USERData, userID=userID)
@@ -145,8 +144,10 @@ def PostCreateUser():
             session.rollback()
             session.close()
             return Response(response=json.dumps(response), status=401)
-            
+
         session.close()
+        
+        
         
         # レスポンス内容を登録する
         response["name"] = input_name

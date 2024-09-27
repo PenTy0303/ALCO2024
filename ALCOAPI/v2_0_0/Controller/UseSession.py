@@ -13,7 +13,7 @@ from .Responses import Responses
 from .tools import ValidateSessionID
 
 # BluePrintの登録
-UseSession = Blueprint("UseSession", __name__,  url_prefix=" /UseSession")
+UseSession = Blueprint("UseSession", __name__,  url_prefix="/UseSession")
 
 # データベースのエンジン作成
 CE = CreateEngine.CreateEngine()

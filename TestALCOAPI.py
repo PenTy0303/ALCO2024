@@ -10,7 +10,7 @@ if(__name__ == "__main__"):
     passwords = ["sample", "sample", "sample", "sample","sample","sample", "sample", "sample", "sample", "sample"]
 
 
-    sel = 1
+    sel = 0
     domain  = ["127.0.0.1:5000", "alco2024.sakura.ne.jp/ALCOAPI/v2.0.0"]
     
     
@@ -25,6 +25,14 @@ if(__name__ == "__main__"):
     url9 = "http://" + domain[sel] + "/FetchUserData/%s?sessionID=%s"
     url10 = "http://" + domain[sel] + "/GetUserRanking/%s?sessionID=%s&num=%s"
     
+    
+    response = requests.post(
+        url = url1,
+        data=json.dumps({"name":"penguin0001", "pass":"sample"}),
+        headers={"Content-Type":"application/json"},
+    ).json()
+    
+    print(json.dumps(response, indent=2))
     
     
     response = requests.post(
