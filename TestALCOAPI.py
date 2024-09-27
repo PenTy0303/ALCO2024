@@ -8,19 +8,22 @@ if(__name__ == "__main__"):
 
     users = ["inamori", "inagawa", "imoto", "imazato", "takatosi", "Xx_fps_shake_xX", "takemoto", "banndou", "uwano", "ishimizu", "mori"]
     passwords = ["sample", "sample", "sample", "sample","sample","sample", "sample", "sample", "sample", "sample"]
-    userIDs = ["1242f353", "e09e6a90", "fbd9f8b6", "94e49b24", "1e50b217", "8e016722", "2ec60030", "ec02f7be", "a14451b3", "15d35444"]
 
 
-    url1 = "http://127.0.0.1:5000/CreateUser"
-    url2 = "http://127.0.0.1:5000/AuthUser"
-    url3 = "http://127.0.0.1:5000/UseSession/%s?sessionID=%s"
-    url4 = "http://127.0.0.1:5000/InterfereTime/%s?sessionID=%s"
-    url5 = "http://127.0.0.1:5000/IsRelief/%s?sessionID=%s"
-    url6 = "http://127.0.0.1:5000/FetchItem/%s?sessionID=%s"
-    url7 = "http://127.0.0.1:5000/FetchItem/%s?sessionID=%s"
-    url8 = "http://127.0.0.1:5000/FetchAchievement/%s?sessionID=%s"
-    url9 = "http://127.0.0.1:5000/FetchUserData/%s?sessionID=%s"
-    url10 = "http://127.0.0.1:5000/GetUserRanking/%s?sessionID=%s&num=%s"
+    sel = 1
+    domain  = ["127.0.0.1:5000", "alco2024.sakura.ne.jp/ALCOAPI/v2.0.0"]
+    
+    
+    url1 = "http://" + domain[sel] + "/CreateUser"
+    url2 = "http://" + domain[sel] + "/AuthUser"
+    url3 = "http://" + domain[sel] + "/UseSession/%s?sessionID=%s"
+    url4 = "http://" + domain[sel] + "/InterfereTime/%s?sessionID=%s"
+    url5 = "http://" + domain[sel] + "/IsRelief/%s?sessionID=%s"
+    url6 = "http://" + domain[sel] + "/FetchItem/%s?sessionID=%s"
+    url7 = "http://" + domain[sel] + "/FetchItem/%s?sessionID=%s"
+    url8 = "http://" + domain[sel] + "/FetchAchievement/%s?sessionID=%s"
+    url9 = "http://" + domain[sel] + "/FetchUserData/%s?sessionID=%s"
+    url10 = "http://" + domain[sel] + "/GetUserRanking/%s?sessionID=%s&num=%s"
     
     
     
@@ -30,7 +33,8 @@ if(__name__ == "__main__"):
         data = json.dumps({"userID":"97e185a1", "pass":"sample"})
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num = 0
+    print(str(num) + json.dumps(response, indent=2))
     
     response = requests.post(
         url = url2,
@@ -38,42 +42,45 @@ if(__name__ == "__main__"):
         data = json.dumps({"userID":"5196c1c8", "pass":"sample"})
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
     
     
     response = requests.get(
         url = url3 % ("5196c1c8", "381bb412")
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
     
     response = requests.get(
         url = url4 % ("97e185a1", "aa65486e")
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
     
     response = requests.put(
         url = url4 % ("97e185a1", "aa65486e")
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
     
     response = requests.get(
         url = url4 % ("97e185a1", "aa65486e"),
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
 
 
     response = requests.get(
         url = url5 % ("97e185a1", "aa65486e")
     ).json()
     
-    print(json.dumps(response, indent=2))    
-    
-    
-    print(time.time() + 86400)
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))    
     
     response = requests.post(
         url = url6 % ("97e185a1", "aa65486e"),
@@ -81,7 +88,8 @@ if(__name__ == "__main__"):
         headers = {"Content-Type":"application/json"},
     ).json()
     
-    print(json.dumps(response, indent=2)) 
+    num += 1
+    print(str(num) + json.dumps(response, indent=2)) 
     
     response = requests.put(
         url = url7 % ("97e185a1", "aa65486e"),
@@ -89,7 +97,9 @@ if(__name__ == "__main__"):
         headers = {"Content-Type":"application/json"},
     ).json()
     
-    print(json.dumps(response, indent=2)) 
+    
+    num += 1
+    print(str(num) + json.dumps(response, indent=2)) 
     
     response = requests.put(
         url = url8 % ("97e185a1", "aa65486e"),
@@ -97,13 +107,15 @@ if(__name__ == "__main__"):
         headers = {"Content-Type":"application/json"},
     ).json()
     
-    print(json.dumps(response, indent=2)) 
+    num += 1
+    print(str(num) + json.dumps(response, indent=2)) 
     
     response = requests.get(
         url = url9 % ("97e185a1", "aa65486e")
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
     
     response = requests.put(
         url = url9 % ("97e185a1", "aa65486e"),
@@ -111,19 +123,15 @@ if(__name__ == "__main__"):
         headers = {"Content-Type":"application/json"},
     ).json()
     
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
     
     response = requests.get(
-        url = url10 % ("5196c1c8", "381bb412", "4")
+        url = url10 % ("5196c1c8", "381bb412", "1")
     ).json()
     
-    print(json.dumps(response, indent=2))
-    
-    resposne = requests.get(
-        url = "http://alco2024.sakura.ne.jp/flask-cgi-test/hello/api/penguin"
-    ).json()
-    
-    print(json.dumps(response, indent=2))
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
         
     # for u,p, id in zip(users, passwords, userIDs):
     #     payload = {"name":str(u), "pass": str(p)}
