@@ -38,7 +38,7 @@ Status = Responses()
 def post_FetchEarthRelief(input_userID):
     acceptedTime = time.time()
     
-    CH(REQUEST=request, method="POST", type="PostFetchiItem")
+    CH(REQUEST=request, method="POST", type="PostFetchiEarchRelief")
     
     # 入力データのバリデーション
     if(not matcher_userID.match(input_userID)):
