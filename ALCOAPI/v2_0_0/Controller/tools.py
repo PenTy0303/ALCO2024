@@ -199,8 +199,7 @@ def ResetEarthStatus(session : sessionmaker , USERData : models.USERData , userI
         user_data[1].lastReliefTimesUpdate = time.time()
         
         ## 救済期限の変更
-        dt = datetime.datetime.now()
-        ltddt = datetime.datetime(year=dt.year, month=dt.month, day=dt.day+7+(7-dt.weekday()), hour=0, minute=0, second=0, microsecond=0)    
+        ltddt = datetime.datetime.now() + datetime.timedelta(days=7)
         
         user_data[1].ltdReliefDate = int(ltddt.timestamp())
 
@@ -208,7 +207,7 @@ def ResetEarthStatus(session : sessionmaker , USERData : models.USERData , userI
         
     except Exception as e:
         
-        raise Exception
+        raise Exception(e)
         
         
         

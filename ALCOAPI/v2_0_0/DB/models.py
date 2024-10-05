@@ -94,6 +94,6 @@ class CLIENTHistory(Base):
 
 if(__name__ == "__main__"):
     from sqlalchemy import create_engine
-    dialect, fn = "sqlite", "ALCOAPI/" + "v2_0_0" + "/DB/alcodb.db"
+    dialect, fn = "sqlite", "ALCOAPI/" + "v2_0_0" + "/DB/alcodb.sqlite"
     CE = create_engine(f"{dialect}:///{fn}")
     Base.metadata.create_all(CE)

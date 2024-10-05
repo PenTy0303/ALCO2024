@@ -26,20 +26,28 @@ if(__name__ == "__main__"):
     url10 = "http://" + domain[sel] + "/GetUserRanking/%s?sessionID=%s&num=%s"
     
     
+    # response = requests.post(
+    #     url = url1,
+    #     data=json.dumps({"name":"penguin0000", "pass":"sample"}),
+    #     headers={"Content-Type":"application/json"},
+    # ).json()
+    
+    # print(json.dumps(response, indent=2))
+    
     
     response = requests.post(
         url = url2,
         headers = {"Content-Type":"application/json"},
         data = json.dumps({"userID":"97e185a1", "pass":"sample"})
     ).json()
-    
+
     num = 0
     print(str(num) + json.dumps(response, indent=2))
     
     response = requests.post(
         url = url2,
         headers = {"Content-Type":"application/json"},
-        data = json.dumps({"userID":"5196c1c8", "pass":"sample"})
+        data = json.dumps({"userID":"8a54bd87", "pass":"sample"})
     ).json()
     
     num += 1
@@ -117,6 +125,14 @@ if(__name__ == "__main__"):
     num += 1
     print(str(num) + json.dumps(response, indent=2))
     
+    
+    response = requests.get(
+        url = url9 % ("8a54bd87", "9b2b619e")
+    ).json()
+    
+    num += 1
+    print(str(num) + json.dumps(response, indent=2))
+    
     response = requests.put(
         url = url9 % ("97e185a1", "aa65486e"),
         data = json.dumps({"todaySteps":100, "totalSteps":1100, "property":900}, ensure_ascii=False),
@@ -132,64 +148,3 @@ if(__name__ == "__main__"):
     
     num += 1
     print(str(num) + json.dumps(response, indent=2))
-        
-    # for u,p, id in zip(users, passwords, userIDs):
-    #     payload = {"name":str(u), "pass": str(p)}
-    #     response1 = requests.post(
-    #         url1, 
-    #         headers={"Content-Type": "application/json"}, 
-    #         data=json.dumps(payload)
-    #         ).json()
-        
-    #     print(response1)
-    #     if("userID" in response1.keys()):
-    #         payload = {"userID":str(response1["userID"]), "pass": p}
-            
-            
-    #         response2 = requests.post(
-    #             url2, 
-    #             headers = {"Content-Type": "application/json"},
-    #             data=json.dumps(payload)
-    #             ).json()
-            
-    #         print(response2)
-    #     else:
-    #         payload = {"userID":id, "pass": p}
-    #         response2 = requests.post(
-    #             url2, 
-    #             headers = {"Content-Type": "application/json"}, 
-    #             data=json.dumps(payload)
-    #             ).json()
-            
-    #         print(response2)
-        
-          
-        
-    # CE = CreateEngine()
-    # session = MakeSession(CE).getSession()
-    
-    # for u,p in zip(users, passwords):
-    #     user = session.query(USER).filter(USER.name == u).all()
-    #     userDataID = user[0].userDataID
-        
-    #     data = session.query(USERData).filter(USERData.userDataID == userDataID).all()
-    #     data = data[0]
-        
-    #     steps = [random.randint(10, 10000) for _ in range(7)]
-        
-    #     data.totalSteps = sum(steps)
-    #     data.todaySteps = steps[0]
-    #     data.point = random.randint(0, 100)
-    #     data.favorableRate = random.randint(0, 100)
-    #     data.reloadedDate = datetime.datetime.now()
-    #     data.weekSteps = json.dumps(dict([("0"+str(i+1), steps[i]) for i in range(7)]))
-        
-    #     session.flush()
-        
-    
-    # session.commit()
-    
-    # session.close()
-
-
-        
