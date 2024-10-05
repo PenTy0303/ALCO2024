@@ -26,57 +26,47 @@ if(__name__ == "__main__"):
     url10 = "http://" + domain[sel] + "/GetUserRanking/%s?sessionID=%s&num=%s"
     
     
-    # response = requests.post(
-    #     url = url1,
-    #     data=json.dumps({"name":"penguin0000", "pass":"sample"}),
-    #     headers={"Content-Type":"application/json"},
-    # ).json()
+    response = requests.post(
+        url = url1,
+        data=json.dumps({"name":"penguin0005", "pass":"sample"}),
+        headers={"Content-Type":"application/json"},
+    ).json()
     
-    # print(json.dumps(response, indent=2))
+    print(json.dumps(response, indent=2))
     
     
     response = requests.post(
         url = url2,
         headers = {"Content-Type":"application/json"},
-        data = json.dumps({"userID":"97e185a1", "pass":"sample"})
+        data = json.dumps({"userID":"d1dbd082", "pass":"sample"})
     ).json()
 
     num = 0
     print(str(num) + json.dumps(response, indent=2))
     
-    response = requests.post(
-        url = url2,
-        headers = {"Content-Type":"application/json"},
-        data = json.dumps({"userID":"8a54bd87", "pass":"sample"})
-    ).json()
-    
-    num += 1
-    print(str(num) + json.dumps(response, indent=2))
-    
-    
     response = requests.get(
-        url = url3 % ("5196c1c8", "381bb412")
+        url = url3 % ("d1dbd082", "90d423e6")
     ).json()
     
     num += 1
     print(str(num) + json.dumps(response, indent=2))
     
     response = requests.get(
-        url = url4 % ("97e185a1", "aa65486e")
+        url = url4 % ("d1dbd082", "90d423e6")
     ).json()
     
     num += 1
     print(str(num) + json.dumps(response, indent=2))
     
     response = requests.put(
-        url = url4 % ("97e185a1", "aa65486e")
+        url = url4 % ("d1dbd082", "90d423e6")
     ).json()
     
     num += 1
     print(str(num) + json.dumps(response, indent=2))
     
     response = requests.get(
-        url = url4 % ("97e185a1", "aa65486e"),
+        url = url4 % ("d1dbd082", "90d423e6"),
     ).json()
     
     num += 1
@@ -84,14 +74,14 @@ if(__name__ == "__main__"):
 
 
     response = requests.get(
-        url = url5 % ("97e185a1", "aa65486e")
+        url = url5 % ("d1dbd082", "90d423e6")
     ).json()
     
     num += 1
     print(str(num) + json.dumps(response, indent=2))    
     
     response = requests.post(
-        url = url6 % ("97e185a1", "aa65486e"),
+        url = url6 % ("d1dbd082", "90d423e6"),
         data = json.dumps({"itemID":2, "itemCount":10, "property":900}),
         headers = {"Content-Type":"application/json"},
     ).json()
@@ -100,8 +90,8 @@ if(__name__ == "__main__"):
     print(str(num) + json.dumps(response, indent=2)) 
     
     response = requests.put(
-        url = url7 % ("97e185a1", "aa65486e"),
-        data = json.dumps({"itemID":2, "itemCount":10, "destructionRate":10, "civilizationRate":10, "debuff":10}),
+        url = url7 % ("d1dbd082", "90d423e6"),
+        data = json.dumps({"itemID":2, "itemCount":10, "destructionRate":10, "civilizationRate":10, "debuff":100}),
         headers = {"Content-Type":"application/json"},
     ).json()
     
@@ -110,7 +100,7 @@ if(__name__ == "__main__"):
     print(str(num) + json.dumps(response, indent=2)) 
     
     response = requests.put(
-        url = url8 % ("97e185a1", "aa65486e"),
+        url = url8 % ("d1dbd082", "90d423e6"),
         data = json.dumps({"unlockedAchievement":[{"id":0, "name":"地球救済マスター"}]}, ensure_ascii=False),
         headers = {"Content-Type":"application/json"},
     ).json()
@@ -119,7 +109,7 @@ if(__name__ == "__main__"):
     print(str(num) + json.dumps(response, indent=2)) 
     
     response = requests.get(
-        url = url9 % ("97e185a1", "aa65486e")
+        url = url9 % ("d1dbd082", "90d423e6")
     ).json()
     
     num += 1
@@ -127,14 +117,14 @@ if(__name__ == "__main__"):
     
     
     response = requests.get(
-        url = url9 % ("8a54bd87", "9b2b619e")
+        url = url9 % ("d1dbd082", "90d423e6")
     ).json()
     
     num += 1
     print(str(num) + json.dumps(response, indent=2))
     
     response = requests.put(
-        url = url9 % ("97e185a1", "aa65486e"),
+        url = url9 % ("d1dbd082", "90d423e6"),
         data = json.dumps({"todaySteps":100, "totalSteps":1100, "property":900}, ensure_ascii=False),
         headers = {"Content-Type":"application/json"},
     ).json()
@@ -143,7 +133,7 @@ if(__name__ == "__main__"):
     print(str(num) + json.dumps(response, indent=2))
     
     response = requests.get(
-        url = url10 % ("5196c1c8", "381bb412", "1")
+        url = url10 % ("d1dbd082", "90d423e6", "1")
     ).json()
     
     num += 1
