@@ -382,7 +382,7 @@ def put_FetchITem(input_userID):
     
     # DBへデータを更新する
     try:
-        user_data = session.query(models.USER, models.USERData).join(models.USERData, models.USERData.userDataID == models.USER.userDataID).filter(models.USER.userID == input_userID).first()
+        user_data : list[models.USERData] = session.query(models.USER, models.USERData).join(models.USERData, models.USERData.userDataID == models.USER.userDataID).filter(models.USER.userID == input_userID).first()
         
         owned_item : dict = json.loads(user_data[1].ownedItems)
         if(str(itemID) in owned_item.keys()):
@@ -393,7 +393,7 @@ def put_FetchITem(input_userID):
             user_data[1].ownedItems = json.dumps(owned_item)
             user_data[1].destructionRate = destructionRate
             user_data[1].civilizationRate = civilizationRate
-            user_data[1].debuff = debuff
+            user_data[1].currentDebuff = debuff
             user_data[1].lastInterfereDate = time.time()
         
         else:
